@@ -1,24 +1,305 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WOK-cz-5Hs">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Cameras-->
+        <scene sceneID="Z4V-OO-rta">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <collectionViewController id="10f-bM-jFw" customClass="CamerasViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DRx-Yt-1VT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ri9-W5-r5l">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cameracell" id="KTc-38-DLb" customClass="CameraCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="10f-bM-jFw" id="sXo-aD-Iy6"/>
+                            <outlet property="delegate" destination="10f-bM-jFw" id="11J-ZD-3DB"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Cameras" id="yMo-3H-jD3">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ED-wl-gEr"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="K0Y-a3-2ft" kind="presentation" identifier="addcamerasegue" modalPresentationStyle="fullScreen" id="IpG-0Q-klW"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I2i-oD-v33" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-694" y="1042"/>
+        </scene>
+        <!--Films-->
+        <scene sceneID="pb7-wi-A04">
+            <objects>
+                <collectionViewController title="Films" id="uPl-Gb-9LH" customClass="FilmViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SJZ-aD-Tvt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PMa-As-nWV">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filmcell" id="yDE-aa-UED" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="uPl-Gb-9LH" id="5TG-lp-zqO"/>
+                            <outlet property="delegate" destination="uPl-Gb-9LH" id="JCI-ec-RDT"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Films" id="KH0-Qe-LVd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="FHx-YK-4OK">
+                            <connections>
+                                <segue destination="S1S-OM-4gg" kind="presentation" identifier="addfilmsegue" modalPresentationStyle="pageSheet" id="7vi-C5-DsE"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G6k-IG-8RR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="1042"/>
+        </scene>
+        <!--CameraDetail-->
+        <scene sceneID="Rf5-5v-CDV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CameraDetail" id="K0Y-a3-2ft" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ZG-xl-sCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="1477"/>
+        </scene>
+        <!--FilmDetail-->
+        <scene sceneID="5lr-B8-oMu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="FilmDetail" id="S1S-OM-4gg" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wQV-fh-Onm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="36" y="1477"/>
+        </scene>
+        <!--PhotoDetail-->
+        <scene sceneID="LY5-ln-LIw">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PhotoDetail" id="lhg-Bq-jCB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cNx-4G-qJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="1477"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="JBI-jC-kvw">
+            <objects>
+                <collectionViewController id="FoM-UY-ZQA" customClass="PhotosViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Wvo-ua-GWU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RYY-qi-bd5">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="46"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photocell" id="ZnH-dK-GPq">
+                                <rect key="frame" x="0.0" y="46" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="c1b-OF-sCl" customClass="CollectionHeaderReusableView" customModule="Film_Drawer" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="FoM-UY-ZQA" id="7Da-jO-M0M"/>
+                            <outlet property="delegate" destination="FoM-UY-ZQA" id="Zws-0X-CkB"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Photos" id="mPU-3y-rCm">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMT-tj-jM9">
+                            <connections>
+                                <segue destination="lhg-Bq-jCB" kind="presentation" modalPresentationStyle="fullScreen" id="0NX-9m-w3k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VwE-Zq-qWi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="848" y="1042"/>
+        </scene>
+        <!--Archive Manager-->
+        <scene sceneID="FwC-7s-5Gz">
+            <objects>
+                <collectionViewController id="cOm-Cd-30f" customClass="ArchivesViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="z4z-2O-6ri">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Bd-ui-3rk">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="archivecell" id="5Jg-yt-bfj">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="cOm-Cd-30f" id="Pys-if-DRc"/>
+                            <outlet property="delegate" destination="cOm-Cd-30f" id="0Vy-1G-RTk"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Archive Manager" id="a8n-V3-MGG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="znR-g8-lgY"/>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rnW-ZM-zkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="1042"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="xTP-6D-DLn">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOK-cz-5Hs" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" alpha="0.90000000000000002" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="2Ar-oa-uqo">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.22352941176470587" green="0.62745098039215685" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" red="0.22352941179999999" green="0.62745098040000002" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="hzE-8U-VqL" kind="relationship" relationship="viewControllers" id="aLj-z8-FNH"/>
+                        <segue destination="0MA-aV-cua" kind="relationship" relationship="viewControllers" id="0xQ-S6-AcY"/>
+                        <segue destination="Wd5-A3-lhY" kind="relationship" relationship="viewControllers" id="pvu-Qn-lot"/>
+                        <segue destination="IWH-fX-rej" kind="relationship" relationship="viewControllers" id="R8p-PZ-TmA"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="55X-Ub-PyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="-481"/>
+        </scene>
+        <!--Cameras-->
+        <scene sceneID="6sL-O7-7FX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wd5-A3-lhY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Cameras" image="CameraIcon" id="GHx-7y-yE2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bd2-xU-heX">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="10f-bM-jFw" kind="relationship" relationship="rootViewController" id="eTg-NZ-Bls"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EdF-a7-HZ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="359"/>
+        </scene>
+        <!--Films-->
+        <scene sceneID="5Cs-qo-3Fk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0MA-aV-cua" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Films" image="FilmIcon" id="I2e-vw-zj7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nai-2E-enM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uPl-Gb-9LH" kind="relationship" relationship="rootViewController" id="Loa-4H-4Jf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FgN-HJ-5Q0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="358.92857142857139"/>
+        </scene>
+        <!--Photos-->
+        <scene sceneID="m6M-y4-BGb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hzE-8U-VqL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Photos" image="PhotosIcon" id="Gpx-J9-gKb"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sWT-hL-eTg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FoM-UY-ZQA" kind="relationship" relationship="rootViewController" id="5d6-if-uY8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fyp-0g-Q7Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="849" y="359"/>
+        </scene>
+        <!--Archives-->
+        <scene sceneID="57K-gW-N4c">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IWH-fX-rej" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Archives" image="ArchiveIcon" id="4S8-YH-CLC"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tYe-Se-tht">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cOm-Cd-30f" kind="relationship" relationship="rootViewController" id="oRr-yu-uWv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c6a-Dt-4yU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1687" y="359"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ArchiveIcon" width="20" height="18.5"/>
+        <image name="CameraIcon" width="20" height="16"/>
+        <image name="FilmIcon" width="20" height="15"/>
+        <image name="PhotosIcon" width="20" height="15.5"/>
+    </resources>
 </document>

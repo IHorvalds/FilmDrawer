@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CamerasViewController" customModule="Film_Drawer" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cameracell" id="gTV-IL-0wX" customClass="CameraCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="159"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="159"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-3c-0vL">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDefaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-1S-UuP">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="iy4-1S-UuP" secondAttribute="height" multiplier="1:1" id="bgq-4M-Z8O"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pentax ME Super" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDn-4G-vRV">
+                        <rect key="frame" x="0.0" y="120" width="120" height="39"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gb8-Ga-s5R">
+                        <rect key="frame" x="85" y="87" width="30" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="0fb-Bp-3kH"/>
+                            <constraint firstAttribute="width" secondItem="gb8-Ga-s5R" secondAttribute="height" multiplier="15:14" id="dKN-JY-EB4"/>
+                        </constraints>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="HeartOutline"/>
+                        <connections>
+                            <action selector="pressedFavouriteButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="j3D-80-36N"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4iN-sf-r94">
+                        <rect key="frame" x="86" y="2" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="Ftw-mN-GDk"/>
+                            <constraint firstAttribute="width" secondItem="4iN-sf-r94" secondAttribute="height" multiplier="1:1" id="hwy-IC-cP0"/>
+                        </constraints>
+                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="exit"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="7Xf-3c-0vL" firstAttribute="centerY" secondItem="iy4-1S-UuP" secondAttribute="centerY" id="3h3-fn-6KM"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="iy4-1S-UuP" secondAttribute="leading" id="6Rr-WH-Aph"/>
+                <constraint firstItem="gb8-Ga-s5R" firstAttribute="bottom" secondItem="iy4-1S-UuP" secondAttribute="bottom" constant="-5" id="6rs-hz-Cvi"/>
+                <constraint firstItem="gb8-Ga-s5R" firstAttribute="trailing" secondItem="iy4-1S-UuP" secondAttribute="trailing" constant="-5" id="Aew-LQ-ORJ"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="4iN-sf-r94" secondAttribute="trailing" constant="2" id="KzK-qJ-1h6"/>
+                <constraint firstItem="DDn-4G-vRV" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="Lmb-jp-AEo"/>
+                <constraint firstItem="DDn-4G-vRV" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="S2e-BM-I5N"/>
+                <constraint firstItem="DDn-4G-vRV" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="UeB-Ni-IzF"/>
+                <constraint firstItem="DDn-4G-vRV" firstAttribute="top" secondItem="iy4-1S-UuP" secondAttribute="bottom" id="VG0-Ag-buw"/>
+                <constraint firstAttribute="top" secondItem="4iN-sf-r94" secondAttribute="top" constant="-2" id="XVr-oB-AMi"/>
+                <constraint firstItem="7Xf-3c-0vL" firstAttribute="width" secondItem="iy4-1S-UuP" secondAttribute="width" id="f64-Aw-Zog"/>
+                <constraint firstItem="7Xf-3c-0vL" firstAttribute="centerX" secondItem="iy4-1S-UuP" secondAttribute="centerX" id="fjv-d7-afd"/>
+                <constraint firstItem="iy4-1S-UuP" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="hHF-eN-xBh"/>
+                <constraint firstAttribute="top" secondItem="iy4-1S-UuP" secondAttribute="top" id="iLX-Sm-zJP"/>
+                <constraint firstItem="7Xf-3c-0vL" firstAttribute="height" secondItem="iy4-1S-UuP" secondAttribute="height" id="kFL-BR-DuA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="120" height="159"/>
+            <connections>
+                <outlet property="cameraNameLabel" destination="DDn-4G-vRV" id="2gp-Ep-pqg"/>
+                <outlet property="cameraPhoto" destination="iy4-1S-UuP" id="oN2-ES-eUW"/>
+                <outlet property="deleteButton" destination="4iN-sf-r94" id="JsD-hA-Aq1"/>
+                <outlet property="favouriteButton" destination="gb8-Ga-s5R" id="wYb-7D-ADy"/>
+                <outlet property="favouriteButtonHeight" destination="0fb-Bp-3kH" id="wEa-49-RA8"/>
+                <outlet property="pictureContainer" destination="7Xf-3c-0vL" id="5B1-VY-mjn"/>
+            </connections>
+            <point key="canvasLocation" x="188.40579710144928" y="189.17410714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="CameraDefaultPicture" width="96" height="96"/>
+        <image name="HeartOutline" width="30" height="27.5"/>
+        <image name="exit" width="40" height="40"/>
+    </resources>
+</document>

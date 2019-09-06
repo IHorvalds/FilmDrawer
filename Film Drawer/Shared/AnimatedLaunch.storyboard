@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E3Z-dx-dUf">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Films-->
+        <scene sceneID="kSr-cl-jek">
+            <objects>
+                <viewController id="E3Z-dx-dUf" customClass="AnimatedLaunchViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="juy-wT-2lw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cGC-5J-H8s" customClass="AnimationView" customModule="Lottie">
+                                <rect key="frame" x="0.0" y="246" width="414" height="414"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cGC-5J-H8s" secondAttribute="height" multiplier="1:1" id="LfA-hq-PbS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="35-loader"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cGC-5J-H8s" firstAttribute="centerX" secondItem="Pd9-Y0-GOX" secondAttribute="centerX" id="YuP-1z-qRJ"/>
+                            <constraint firstItem="cGC-5J-H8s" firstAttribute="width" secondItem="juy-wT-2lw" secondAttribute="width" id="rq7-Bb-faP"/>
+                            <constraint firstItem="cGC-5J-H8s" firstAttribute="centerY" secondItem="Pd9-Y0-GOX" secondAttribute="centerY" id="zYY-cm-eIE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pd9-Y0-GOX"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Films" id="j6p-jU-BwL"/>
+                    <connections>
+                        <outlet property="animationView" destination="cGC-5J-H8s" id="0Yo-a4-9Tt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YWf-pK-zxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="296" y="1535"/>
+        </scene>
+    </scenes>
+</document>

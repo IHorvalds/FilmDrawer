@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="filmcell" id="gTV-IL-0wX" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="180"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="180"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wgm-HX-2Dp" userLabel="backImg">
+                        <rect key="frame" x="11.5" y="32" width="97" height="97"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wgm-HX-2Dp" secondAttribute="height" multiplier="1:1" id="4Mo-3f-VHF"/>
+                        </constraints>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UHu-mV-ZqH" userLabel="midImg">
+                        <rect key="frame" x="5" y="15" width="110" height="110"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="UHu-mV-ZqH" secondAttribute="height" multiplier="1:1" id="iEm-5U-pHL"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PV4-QP-W94">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FilmOutline" translatesAutoresizingMaskIntoConstraints="NO" id="3Kg-HB-tqF" userLabel="topImg">
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="3Kg-HB-tqF" secondAttribute="height" multiplier="1:1" id="zsl-zn-cCl"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Kentmere 400" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fdn-4q-vdH">
+                        <rect key="frame" x="0.0" y="129" width="120" height="51"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                        <color key="textColor" red="0.42352941176470588" green="0.42352941176470588" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="luU-XG-F6W">
+                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="luU-XG-F6W" secondAttribute="height" multiplier="1:1" id="Pjp-gQ-iXb"/>
+                            <constraint firstAttribute="height" constant="25" id="oWh-Rl-9Zf"/>
+                        </constraints>
+                        <state key="normal" image="exit"/>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="fdn-4q-vdH" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="2z9-N6-M1u"/>
+                <constraint firstItem="UHu-mV-ZqH" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="5Hy-xb-JuQ"/>
+                <constraint firstItem="UHu-mV-ZqH" firstAttribute="width" secondItem="3Kg-HB-tqF" secondAttribute="height" multiplier="1.1:1.2" id="7MA-m2-EvZ"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="luU-XG-F6W" secondAttribute="leading" id="BJs-yz-bx2"/>
+                <constraint firstItem="PV4-QP-W94" firstAttribute="height" secondItem="3Kg-HB-tqF" secondAttribute="height" id="CfX-9v-XzB"/>
+                <constraint firstItem="wgm-HX-2Dp" firstAttribute="top" secondItem="UHu-mV-ZqH" secondAttribute="top" constant="17" id="IKh-cn-IO3"/>
+                <constraint firstItem="PV4-QP-W94" firstAttribute="width" secondItem="3Kg-HB-tqF" secondAttribute="width" id="WMy-S4-iPZ"/>
+                <constraint firstItem="PV4-QP-W94" firstAttribute="leading" secondItem="3Kg-HB-tqF" secondAttribute="leading" id="XCq-Ly-PJZ"/>
+                <constraint firstItem="fdn-4q-vdH" firstAttribute="top" secondItem="wgm-HX-2Dp" secondAttribute="bottom" id="dMj-3C-3IP"/>
+                <constraint firstItem="UHu-mV-ZqH" firstAttribute="top" secondItem="3Kg-HB-tqF" secondAttribute="top" constant="15" identifier="topToMidConstraint" id="dgP-mx-1cL"/>
+                <constraint firstItem="fdn-4q-vdH" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="e1d-2Y-BkP"/>
+                <constraint firstItem="fdn-4q-vdH" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="fbk-RO-fW2"/>
+                <constraint firstItem="luU-XG-F6W" firstAttribute="top" secondItem="3Kg-HB-tqF" secondAttribute="firstBaseline" id="gOA-L8-IE3"/>
+                <constraint firstItem="wgm-HX-2Dp" firstAttribute="width" secondItem="UHu-mV-ZqH" secondAttribute="height" multiplier="1.1:1.25" id="ivn-qR-1e1"/>
+                <constraint firstItem="PV4-QP-W94" firstAttribute="top" secondItem="3Kg-HB-tqF" secondAttribute="top" id="kVS-KW-2AH"/>
+                <constraint firstItem="3Kg-HB-tqF" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="oFU-QC-0P1"/>
+                <constraint firstItem="wgm-HX-2Dp" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="pNu-OM-7Ab"/>
+                <constraint firstAttribute="top" secondItem="3Kg-HB-tqF" secondAttribute="top" id="rDN-FR-OOb"/>
+                <constraint firstItem="3Kg-HB-tqF" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="ruu-nT-MFJ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="120" height="180"/>
+            <connections>
+                <outlet property="backImg" destination="wgm-HX-2Dp" id="T7d-pR-klW"/>
+                <outlet property="background" destination="PV4-QP-W94" id="hni-XV-aBq"/>
+                <outlet property="deleteButton" destination="luU-XG-F6W" id="rQj-I9-FNL"/>
+                <outlet property="filmNameLabel" destination="fdn-4q-vdH" id="uhZ-eU-wOf"/>
+                <outlet property="midImg" destination="UHu-mV-ZqH" id="wj5-tx-lP9"/>
+                <outlet property="midToBackConstraint" destination="IKh-cn-IO3" id="sAG-yJ-vof"/>
+                <outlet property="topImg" destination="3Kg-HB-tqF" id="NFR-zO-S2m"/>
+                <outlet property="topToMidConstraint" destination="dgP-mx-1cL" id="nhk-Oi-1Vr"/>
+            </connections>
+            <point key="canvasLocation" x="188.40579710144928" y="196.20535714285714"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="FilmOutline" width="100" height="100"/>
+        <image name="exit" width="40" height="40"/>
+    </resources>
+</document>

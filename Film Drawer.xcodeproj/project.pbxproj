@@ -7,23 +7,113 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20485E6A231AF33B005D1138 /* AnimatedLaunch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20485E69231AF33B005D1138 /* AnimatedLaunch.storyboard */; };
+		20485E6C231AF4B6005D1138 /* 35-loader.json in Resources */ = {isa = PBXBuildFile; fileRef = 20485E6B231AF4B6005D1138 /* 35-loader.json */; };
+		20485E6E231AF55B005D1138 /* AnimatedLaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20485E6D231AF55B005D1138 /* AnimatedLaunchViewController.swift */; };
+		204EF7622316B40200C713A0 /* EditCameraDetailTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EF7612316B40200C713A0 /* EditCameraDetailTableVC.swift */; };
+		204EF764231703B400C713A0 /* CamelCased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204EF763231703B400C713A0 /* CamelCased.swift */; };
 		206C757822B2DFF70044A5CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C757722B2DFF70044A5CD /* AppDelegate.swift */; };
-		206C757A22B2DFF70044A5CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C757922B2DFF70044A5CD /* ViewController.swift */; };
+		206C757A22B2DFF70044A5CD /* FilmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206C757922B2DFF70044A5CD /* FilmViewController.swift */; };
 		206C757D22B2DFF70044A5CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 206C757B22B2DFF70044A5CD /* Main.storyboard */; };
 		206C758022B2DFF70044A5CD /* Film_Drawer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 206C757E22B2DFF70044A5CD /* Film_Drawer.xcdatamodeld */; };
 		206C758222B2DFF80044A5CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 206C758122B2DFF80044A5CD /* Assets.xcassets */; };
 		206C758522B2DFF80044A5CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 206C758322B2DFF80044A5CD /* LaunchScreen.storyboard */; };
+		208981F722FB1648008F4562 /* FullWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */; };
+		208981F922FC734C008F4562 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208981F822FC734C008F4562 /* FetchedResultsController.swift */; };
+		20BA9F8822ECA63C00C35F7F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC46D622EBA71100CFB041 /* Camera.swift */; };
+		20BEFDF5231543A100CDACA4 /* CameraPictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEFDF4231543A100CDACA4 /* CameraPictureCell.swift */; };
+		20BEFDF72315492800CDACA4 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEFDF62315492800CDACA4 /* RoundedButton.swift */; };
+		20BEFDF92315622900CDACA4 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEFDF82315622900CDACA4 /* DescriptionCell.swift */; };
+		20C59B9222E879790010E3EB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20C59B9122E879790010E3EB /* MapKit.framework */; };
+		20D5651F231C49BE00CD28E5 /* UIViewController+IsModalExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5651E231C49BE00CD28E5 /* UIViewController+IsModalExtension.swift */; };
+		20D56527231D3D9600CD28E5 /* PhotoDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20D56526231D3D9600CD28E5 /* PhotoDetail.storyboard */; };
+		20D5652B231D873600CD28E5 /* BasePhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5652A231D873600CD28E5 /* BasePhotoCollectionViewController.swift */; };
+		20D5652E231D8B1F00CD28E5 /* CollectionHeaderReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5652C231D8B1F00CD28E5 /* CollectionHeaderReusableView.swift */; };
+		20D5652F231D8B1F00CD28E5 /* CollectionHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D5652D231D8B1F00CD28E5 /* CollectionHeaderReusableView.xib */; };
+		20D565342322819400CD28E5 /* PicturePreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D565322322819400CD28E5 /* PicturePreviewCollectionViewCell.swift */; };
+		20D565352322819400CD28E5 /* PicturePreviewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D565332322819400CD28E5 /* PicturePreviewCollectionViewCell.xib */; };
+		20D56538232281AC00CD28E5 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D56536232281AC00CD28E5 /* MapCollectionViewCell.swift */; };
+		20D56539232281AC00CD28E5 /* MapCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D56537232281AC00CD28E5 /* MapCollectionViewCell.xib */; };
+		20D5653C232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5653A232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift */; };
+		20D5653D232281CC00CD28E5 /* MLDescriptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20D5653B232281CC00CD28E5 /* MLDescriptionCollectionViewCell.xib */; };
+		20E5520123030B4C007569DE /* CamerasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5520023030B4C007569DE /* CamerasViewController.swift */; };
+		20E5520323030B5E007569DE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5520223030B5E007569DE /* PhotosViewController.swift */; };
+		20E5520523030B74007569DE /* ArchivesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5520423030B74007569DE /* ArchivesViewController.swift */; };
+		20E5520D230315CC007569DE /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5520B230315CC007569DE /* PhotoCollectionViewCell.swift */; };
+		20E5520E230315CC007569DE /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E5520C230315CC007569DE /* PhotoCollectionViewCell.xib */; };
+		20E5521123031AFD007569DE /* ArchiveCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5520F23031AFD007569DE /* ArchiveCollectionViewCell.swift */; };
+		20E5521223031AFD007569DE /* ArchiveCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E5521023031AFD007569DE /* ArchiveCollectionViewCell.xib */; };
+		20E5521523031E99007569DE /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5521323031E99007569DE /* CameraCollectionViewCell.swift */; };
+		20E5521623031E99007569DE /* CameraCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E5521423031E99007569DE /* CameraCollectionViewCell.xib */; };
+		20E55219230322B7007569DE /* FilmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E55217230322B7007569DE /* FilmCollectionViewCell.swift */; };
+		20E5521A230322B7007569DE /* FilmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20E55218230322B7007569DE /* FilmCollectionViewCell.xib */; };
+		20E5521D2303256C007569DE /* CameraDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5521C2303256C007569DE /* CameraDetailViewController.swift */; };
+		20E5522123032592007569DE /* FilmDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5522023032592007569DE /* FilmDetailViewController.swift */; };
+		20E552232303259F007569DE /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E552222303259F007569DE /* PhotoDetailViewController.swift */; };
+		20E5524923097BF6007569DE /* FilmDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E5524823097BF6007569DE /* FilmDetail.storyboard */; };
+		20E5524D230EB29C007569DE /* CameraDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20E5524C230EB29C007569DE /* CameraDetail.storyboard */; };
+		20E5524F230EC83E007569DE /* EditFilmDetailTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5524E230EC83E007569DE /* EditFilmDetailTableVC.swift */; };
+		20E5525123132ACC007569DE /* SelectCameraTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5525023132ACC007569DE /* SelectCameraTableVC.swift */; };
+		20EC46D922EBA71B00CFB041 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC46D822EBA71B00CFB041 /* Film.swift */; };
+		20EC46DB22EBA72200CFB041 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC46DA22EBA72200CFB041 /* Photo.swift */; };
+		C7ECD00FF98D28494A083B73 /* Pods_Film_Drawer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAECE8D9AB3F0EA0A4413060 /* Pods_Film_Drawer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0518301E0EC5FB33B1BD4986 /* Pods-Film Drawer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Film Drawer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Film Drawer/Pods-Film Drawer.debug.xcconfig"; sourceTree = "<group>"; };
+		20485E69231AF33B005D1138 /* AnimatedLaunch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AnimatedLaunch.storyboard; sourceTree = "<group>"; };
+		20485E6B231AF4B6005D1138 /* 35-loader.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "35-loader.json"; sourceTree = "<group>"; };
+		20485E6D231AF55B005D1138 /* AnimatedLaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedLaunchViewController.swift; sourceTree = "<group>"; };
+		204EF7612316B40200C713A0 /* EditCameraDetailTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCameraDetailTableVC.swift; sourceTree = "<group>"; };
+		204EF763231703B400C713A0 /* CamelCased.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamelCased.swift; sourceTree = "<group>"; };
 		206C757422B2DFF70044A5CD /* Film Drawer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Film Drawer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		206C757722B2DFF70044A5CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		206C757922B2DFF70044A5CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		206C757922B2DFF70044A5CD /* FilmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmViewController.swift; sourceTree = "<group>"; };
 		206C757C22B2DFF70044A5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		206C757F22B2DFF70044A5CD /* Film_Drawer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Film_Drawer.xcdatamodel; sourceTree = "<group>"; };
 		206C758122B2DFF80044A5CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		206C758422B2DFF80044A5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		206C758622B2DFF80044A5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCollectionViewController.swift; sourceTree = "<group>"; };
+		208981F822FC734C008F4562 /* FetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsController.swift; sourceTree = "<group>"; };
+		20BEFDF4231543A100CDACA4 /* CameraPictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPictureCell.swift; sourceTree = "<group>"; };
+		20BEFDF62315492800CDACA4 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		20BEFDF82315622900CDACA4 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		20C59B9122E879790010E3EB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		20D5651E231C49BE00CD28E5 /* UIViewController+IsModalExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+IsModalExtension.swift"; sourceTree = "<group>"; };
+		20D56526231D3D9600CD28E5 /* PhotoDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoDetail.storyboard; sourceTree = "<group>"; };
+		20D5652A231D873600CD28E5 /* BasePhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePhotoCollectionViewController.swift; sourceTree = "<group>"; };
+		20D5652C231D8B1F00CD28E5 /* CollectionHeaderReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeaderReusableView.swift; sourceTree = "<group>"; };
+		20D5652D231D8B1F00CD28E5 /* CollectionHeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionHeaderReusableView.xib; sourceTree = "<group>"; };
+		20D565322322819400CD28E5 /* PicturePreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		20D565332322819400CD28E5 /* PicturePreviewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PicturePreviewCollectionViewCell.xib; sourceTree = "<group>"; };
+		20D56536232281AC00CD28E5 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
+		20D56537232281AC00CD28E5 /* MapCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapCollectionViewCell.xib; sourceTree = "<group>"; };
+		20D5653A232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLDescriptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		20D5653B232281CC00CD28E5 /* MLDescriptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MLDescriptionCollectionViewCell.xib; sourceTree = "<group>"; };
+		20E5520023030B4C007569DE /* CamerasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CamerasViewController.swift; sourceTree = "<group>"; };
+		20E5520223030B5E007569DE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		20E5520423030B74007569DE /* ArchivesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchivesViewController.swift; sourceTree = "<group>"; };
+		20E5520B230315CC007569DE /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		20E5520C230315CC007569DE /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		20E5520F23031AFD007569DE /* ArchiveCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveCollectionViewCell.swift; sourceTree = "<group>"; };
+		20E5521023031AFD007569DE /* ArchiveCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArchiveCollectionViewCell.xib; sourceTree = "<group>"; };
+		20E5521323031E99007569DE /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
+		20E5521423031E99007569DE /* CameraCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraCollectionViewCell.xib; sourceTree = "<group>"; };
+		20E55217230322B7007569DE /* FilmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmCollectionViewCell.swift; sourceTree = "<group>"; };
+		20E55218230322B7007569DE /* FilmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilmCollectionViewCell.xib; sourceTree = "<group>"; };
+		20E5521C2303256C007569DE /* CameraDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDetailViewController.swift; sourceTree = "<group>"; };
+		20E5522023032592007569DE /* FilmDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetailViewController.swift; sourceTree = "<group>"; };
+		20E552222303259F007569DE /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
+		20E5524823097BF6007569DE /* FilmDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FilmDetail.storyboard; sourceTree = "<group>"; };
+		20E5524C230EB29C007569DE /* CameraDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CameraDetail.storyboard; sourceTree = "<group>"; };
+		20E5524E230EC83E007569DE /* EditFilmDetailTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFilmDetailTableVC.swift; sourceTree = "<group>"; };
+		20E5525023132ACC007569DE /* SelectCameraTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCameraTableVC.swift; sourceTree = "<group>"; };
+		20EC46D622EBA71100CFB041 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		20EC46D822EBA71B00CFB041 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		20EC46DA22EBA72200CFB041 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		8D826E9F02DC9F189F5B48E6 /* Pods-Film Drawer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Film Drawer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Film Drawer/Pods-Film Drawer.release.xcconfig"; sourceTree = "<group>"; };
+		DAECE8D9AB3F0EA0A4413060 /* Pods_Film_Drawer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Film_Drawer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +121,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C59B9222E879790010E3EB /* MapKit.framework in Frameworks */,
+				C7ECD00FF98D28494A083B73 /* Pods_Film_Drawer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A344F1FCBD9937625E8EDF2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0518301E0EC5FB33B1BD4986 /* Pods-Film Drawer.debug.xcconfig */,
+				8D826E9F02DC9F189F5B48E6 /* Pods-Film Drawer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		206C756B22B2DFF70044A5CD = {
 			isa = PBXGroup;
 			children = (
+				20485E6B231AF4B6005D1138 /* 35-loader.json */,
 				206C757622B2DFF70044A5CD /* Film Drawer */,
 				206C757522B2DFF70044A5CD /* Products */,
+				20C59B9022E879790010E3EB /* Frameworks */,
+				1A344F1FCBD9937625E8EDF2 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +160,121 @@
 		206C757622B2DFF70044A5CD /* Film Drawer */ = {
 			isa = PBXGroup;
 			children = (
-				206C757722B2DFF70044A5CD /* AppDelegate.swift */,
-				206C757922B2DFF70044A5CD /* ViewController.swift */,
+				20E5521B2303253A007569DE /* DetailViewControllers */,
+				208981FC22FC888E008F4562 /* Cells */,
+				20F8E06222E877B900B63C55 /* Shared */,
+				20F8E06122E877AF00B63C55 /* Model */,
+				20E5520623030B7C007569DE /* HomeViewControllers */,
 				206C757B22B2DFF70044A5CD /* Main.storyboard */,
-				206C758122B2DFF80044A5CD /* Assets.xcassets */,
-				206C758322B2DFF80044A5CD /* LaunchScreen.storyboard */,
+				206C757722B2DFF70044A5CD /* AppDelegate.swift */,
 				206C758622B2DFF80044A5CD /* Info.plist */,
-				206C757E22B2DFF70044A5CD /* Film_Drawer.xcdatamodeld */,
 			);
 			path = "Film Drawer";
+			sourceTree = "<group>";
+		};
+		208981FC22FC888E008F4562 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				20D56531232280A900CD28E5 /* Cells for photo */,
+				20D5653023227C7900CD28E5 /* Basic cells */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		20C59B9022E879790010E3EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20C59B9122E879790010E3EB /* MapKit.framework */,
+				DAECE8D9AB3F0EA0A4413060 /* Pods_Film_Drawer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		20D5653023227C7900CD28E5 /* Basic cells */ = {
+			isa = PBXGroup;
+			children = (
+				20BEFDF4231543A100CDACA4 /* CameraPictureCell.swift */,
+				20E5520B230315CC007569DE /* PhotoCollectionViewCell.swift */,
+				20E5520C230315CC007569DE /* PhotoCollectionViewCell.xib */,
+				20E5520F23031AFD007569DE /* ArchiveCollectionViewCell.swift */,
+				20E5521023031AFD007569DE /* ArchiveCollectionViewCell.xib */,
+				20E5521323031E99007569DE /* CameraCollectionViewCell.swift */,
+				20E5521423031E99007569DE /* CameraCollectionViewCell.xib */,
+				20E55217230322B7007569DE /* FilmCollectionViewCell.swift */,
+				20E55218230322B7007569DE /* FilmCollectionViewCell.xib */,
+				20BEFDF82315622900CDACA4 /* DescriptionCell.swift */,
+				20D5652C231D8B1F00CD28E5 /* CollectionHeaderReusableView.swift */,
+				20D5652D231D8B1F00CD28E5 /* CollectionHeaderReusableView.xib */,
+			);
+			path = "Basic cells";
+			sourceTree = "<group>";
+		};
+		20D56531232280A900CD28E5 /* Cells for photo */ = {
+			isa = PBXGroup;
+			children = (
+				20D565322322819400CD28E5 /* PicturePreviewCollectionViewCell.swift */,
+				20D565332322819400CD28E5 /* PicturePreviewCollectionViewCell.xib */,
+				20D56536232281AC00CD28E5 /* MapCollectionViewCell.swift */,
+				20D56537232281AC00CD28E5 /* MapCollectionViewCell.xib */,
+				20D5653A232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift */,
+				20D5653B232281CC00CD28E5 /* MLDescriptionCollectionViewCell.xib */,
+			);
+			path = "Cells for photo";
+			sourceTree = "<group>";
+		};
+		20E5520623030B7C007569DE /* HomeViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				206C757922B2DFF70044A5CD /* FilmViewController.swift */,
+				20E5520023030B4C007569DE /* CamerasViewController.swift */,
+				20E5520223030B5E007569DE /* PhotosViewController.swift */,
+				20E5520423030B74007569DE /* ArchivesViewController.swift */,
+			);
+			path = HomeViewControllers;
+			sourceTree = "<group>";
+		};
+		20E5521B2303253A007569DE /* DetailViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				20E5521C2303256C007569DE /* CameraDetailViewController.swift */,
+				20E5524C230EB29C007569DE /* CameraDetail.storyboard */,
+				20E5522023032592007569DE /* FilmDetailViewController.swift */,
+				20E5524823097BF6007569DE /* FilmDetail.storyboard */,
+				20E552222303259F007569DE /* PhotoDetailViewController.swift */,
+				20D56526231D3D9600CD28E5 /* PhotoDetail.storyboard */,
+				20E5524E230EC83E007569DE /* EditFilmDetailTableVC.swift */,
+				20E5525023132ACC007569DE /* SelectCameraTableVC.swift */,
+				204EF7612316B40200C713A0 /* EditCameraDetailTableVC.swift */,
+			);
+			path = DetailViewControllers;
+			sourceTree = "<group>";
+		};
+		20F8E06122E877AF00B63C55 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				206C757E22B2DFF70044A5CD /* Film_Drawer.xcdatamodeld */,
+				20EC46D622EBA71100CFB041 /* Camera.swift */,
+				20EC46D822EBA71B00CFB041 /* Film.swift */,
+				20EC46DA22EBA72200CFB041 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		20F8E06222E877B900B63C55 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				206C758122B2DFF80044A5CD /* Assets.xcassets */,
+				20BEFDF62315492800CDACA4 /* RoundedButton.swift */,
+				20D5651E231C49BE00CD28E5 /* UIViewController+IsModalExtension.swift */,
+				204EF763231703B400C713A0 /* CamelCased.swift */,
+				206C758322B2DFF80044A5CD /* LaunchScreen.storyboard */,
+				20485E69231AF33B005D1138 /* AnimatedLaunch.storyboard */,
+				20485E6D231AF55B005D1138 /* AnimatedLaunchViewController.swift */,
+				208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */,
+				208981F822FC734C008F4562 /* FetchedResultsController.swift */,
+				20D5652A231D873600CD28E5 /* BasePhotoCollectionViewController.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +284,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 206C758922B2DFF80044A5CD /* Build configuration list for PBXNativeTarget "Film Drawer" */;
 			buildPhases = (
+				FB9C95E130294A44562DDC54 /* [CP] Check Pods Manifest.lock */,
 				206C757022B2DFF70044A5CD /* Sources */,
 				206C757122B2DFF70044A5CD /* Frameworks */,
 				206C757222B2DFF70044A5CD /* Resources */,
+				A327390AA3AD8DA6444E108F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +311,11 @@
 				TargetAttributes = {
 					206C757322B2DFF70044A5CD = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -126,21 +343,110 @@
 			buildActionMask = 2147483647;
 			files = (
 				206C758522B2DFF80044A5CD /* LaunchScreen.storyboard in Resources */,
+				20E5521223031AFD007569DE /* ArchiveCollectionViewCell.xib in Resources */,
+				20485E6C231AF4B6005D1138 /* 35-loader.json in Resources */,
+				20E5520E230315CC007569DE /* PhotoCollectionViewCell.xib in Resources */,
 				206C758222B2DFF80044A5CD /* Assets.xcassets in Resources */,
 				206C757D22B2DFF70044A5CD /* Main.storyboard in Resources */,
+				20E5521623031E99007569DE /* CameraCollectionViewCell.xib in Resources */,
+				20D56539232281AC00CD28E5 /* MapCollectionViewCell.xib in Resources */,
+				20D5653D232281CC00CD28E5 /* MLDescriptionCollectionViewCell.xib in Resources */,
+				20E5521A230322B7007569DE /* FilmCollectionViewCell.xib in Resources */,
+				20D5652F231D8B1F00CD28E5 /* CollectionHeaderReusableView.xib in Resources */,
+				20E5524D230EB29C007569DE /* CameraDetail.storyboard in Resources */,
+				20D56527231D3D9600CD28E5 /* PhotoDetail.storyboard in Resources */,
+				20D565352322819400CD28E5 /* PicturePreviewCollectionViewCell.xib in Resources */,
+				20485E6A231AF33B005D1138 /* AnimatedLaunch.storyboard in Resources */,
+				20E5524923097BF6007569DE /* FilmDetail.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A327390AA3AD8DA6444E108F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Film Drawer/Pods-Film Drawer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Film Drawer/Pods-Film Drawer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FB9C95E130294A44562DDC54 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Film Drawer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		206C757022B2DFF70044A5CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				206C757A22B2DFF70044A5CD /* ViewController.swift in Sources */,
+				20D5652B231D873600CD28E5 /* BasePhotoCollectionViewController.swift in Sources */,
+				20EC46DB22EBA72200CFB041 /* Photo.swift in Sources */,
+				20D56538232281AC00CD28E5 /* MapCollectionViewCell.swift in Sources */,
+				20E5520323030B5E007569DE /* PhotosViewController.swift in Sources */,
+				20D5653C232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift in Sources */,
+				20E5522123032592007569DE /* FilmDetailViewController.swift in Sources */,
+				20EC46D922EBA71B00CFB041 /* Film.swift in Sources */,
+				20E5521523031E99007569DE /* CameraCollectionViewCell.swift in Sources */,
+				20E5521123031AFD007569DE /* ArchiveCollectionViewCell.swift in Sources */,
+				20485E6E231AF55B005D1138 /* AnimatedLaunchViewController.swift in Sources */,
+				20E552232303259F007569DE /* PhotoDetailViewController.swift in Sources */,
+				20D5651F231C49BE00CD28E5 /* UIViewController+IsModalExtension.swift in Sources */,
+				208981F922FC734C008F4562 /* FetchedResultsController.swift in Sources */,
+				20D565342322819400CD28E5 /* PicturePreviewCollectionViewCell.swift in Sources */,
+				20BEFDF92315622900CDACA4 /* DescriptionCell.swift in Sources */,
+				20E55219230322B7007569DE /* FilmCollectionViewCell.swift in Sources */,
+				20E5524F230EC83E007569DE /* EditFilmDetailTableVC.swift in Sources */,
+				204EF7622316B40200C713A0 /* EditCameraDetailTableVC.swift in Sources */,
+				206C757A22B2DFF70044A5CD /* FilmViewController.swift in Sources */,
+				20E5520123030B4C007569DE /* CamerasViewController.swift in Sources */,
+				208981F722FB1648008F4562 /* FullWidthCollectionViewController.swift in Sources */,
 				206C758022B2DFF70044A5CD /* Film_Drawer.xcdatamodeld in Sources */,
+				20E5525123132ACC007569DE /* SelectCameraTableVC.swift in Sources */,
 				206C757822B2DFF70044A5CD /* AppDelegate.swift in Sources */,
+				20E5521D2303256C007569DE /* CameraDetailViewController.swift in Sources */,
+				204EF764231703B400C713A0 /* CamelCased.swift in Sources */,
+				20BEFDF72315492800CDACA4 /* RoundedButton.swift in Sources */,
+				20BEFDF5231543A100CDACA4 /* CameraPictureCell.swift in Sources */,
+				20E5520D230315CC007569DE /* PhotoCollectionViewCell.swift in Sources */,
+				20BA9F8822ECA63C00C35F7F /* Camera.swift in Sources */,
+				20D5652E231D8B1F00CD28E5 /* CollectionHeaderReusableView.swift in Sources */,
+				20E5520523030B74007569DE /* ArchivesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,37 +590,41 @@
 		};
 		206C758A22B2DFF80044A5CD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0518301E0EC5FB33B1BD4986 /* Pods-Film Drawer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWKMMKH888;
 				INFOPLIST_FILE = "Film Drawer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.horvalds.Film-Drawer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horvalds.filmDrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		206C758B22B2DFF80044A5CD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8D826E9F02DC9F189F5B48E6 /* Pods-Film Drawer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VWKMMKH888;
 				INFOPLIST_FILE = "Film Drawer/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.horvalds.Film-Drawer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.horvalds.filmDrawer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
