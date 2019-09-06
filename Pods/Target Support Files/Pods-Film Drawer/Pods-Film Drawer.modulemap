@@ -1,0 +1,6 @@
+framework module Pods_Film_Drawer {
+  umbrella header "Pods-Film Drawer-umbrella.h"
+
+  export *
+  module * { export * }
+}
