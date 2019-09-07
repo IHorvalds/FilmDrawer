@@ -2,22 +2,25 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Thin-S.png",
+      "filename" : "GroupPhotoIcon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Thin-S@2x.png",
+      "filename" : "GroupPhotoIcon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Thin-S@3x.png",
+      "filename" : "GroupPhotoIcon@81x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
     "version" : 1,
     "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }

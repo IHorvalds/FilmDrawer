@@ -53,7 +53,7 @@
         <scene sceneID="pb7-wi-A04">
             <objects>
                 <collectionViewController title="Films" id="uPl-Gb-9LH" customClass="FilmViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="SJZ-aD-Tvt">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="SJZ-aD-Tvt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,6 +71,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </view>
+                                <connections>
+                                    <segue destination="bAh-5m-3E8" kind="show" identifier="filmdetailsegue" id="CQl-0A-kcv"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -104,7 +107,7 @@
                 <viewControllerPlaceholder storyboardName="FilmDetail" id="S1S-OM-4gg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQV-fh-Onm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="1477"/>
+            <point key="canvasLocation" x="-160" y="1477"/>
         </scene>
         <!--PhotoDetail-->
         <scene sceneID="LY5-ln-LIw">
@@ -113,6 +116,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNx-4G-qJc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="849" y="1477"/>
+        </scene>
+        <!--Base Photos Collection View Controller-->
+        <scene sceneID="W9m-32-REt">
+            <objects>
+                <collectionViewController id="bAh-5m-3E8" customClass="BasePhotosCollectionViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="pDj-ef-g84">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xEr-HJ-HK3">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="50" height="46"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="njO-EP-L36" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="46" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fsa-4X-v3z">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="bAh-5m-3E8" id="6gS-cn-cyR"/>
+                            <outlet property="delegate" destination="bAh-5m-3E8" id="f2D-Sf-w4W"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UVv-kK-QlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="35" y="1905"/>
         </scene>
         <!--Photos-->
         <scene sceneID="JBI-jC-kvw">
@@ -129,7 +170,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photocell" id="ZnH-dK-GPq">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photocell" id="ZnH-dK-GPq" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="46" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -201,11 +242,10 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOK-cz-5Hs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" alpha="0.90000000000000002" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="2Ar-oa-uqo">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Ar-oa-uqo">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.22352941176470587" green="0.62745098039215685" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" red="0.22352941179999999" green="0.62745098040000002" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -297,9 +337,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ArchiveIcon" width="20" height="18.5"/>
-        <image name="CameraIcon" width="20" height="16"/>
-        <image name="FilmIcon" width="20" height="15"/>
-        <image name="PhotosIcon" width="20" height="15.5"/>
+        <image name="ArchiveIcon" width="25" height="23"/>
+        <image name="CameraIcon" width="27" height="22"/>
+        <image name="FilmIcon" width="27" height="22"/>
+        <image name="PhotosIcon" width="23" height="24"/>
     </resources>
 </document>

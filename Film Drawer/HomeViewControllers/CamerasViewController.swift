@@ -9,13 +9,14 @@
 import UIKit
 import CoreData
 
-class CamerasViewController: FetchedResultsCollectionViewController, UICollectionViewDelegateFlowLayout {
+class CamerasViewController: FetchedResultsCollectionViewController, UICollectionViewDataSourcePrefetching, UICollectionViewDelegateFlowLayout {
     
 
     //MARK: variables for data source
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var fetchedResultsController: NSFetchedResultsController<Camera>?
+    let serialQueue = DispatchQueue(label: "Decode queue")
     //2 objects per row
     var spacing: CGFloat = 0.05 * UIScreen.main.bounds.width //Cell width is 25.6% of screen width. This is the remainder.
     
@@ -68,6 +69,8 @@ class CamerasViewController: FetchedResultsCollectionViewController, UICollectio
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.prefetchDataSource = self
         
         //register the xib file for the film cell
         collectionView.register(UINib(nibName: "CameraCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cameracell")
@@ -194,7 +197,31 @@ extension CamerasViewController: CameraCellDelegate {
         cell.addGestureRecognizer(lpGR)
         cell.isUserInteractionEnabled = true
         
-        cell.cameraPhoto.image = camera.getUIImage() ?? #imageLiteral(resourceName: "CameraDefaultPicture")
+        let imageSize = cell.cameraPhoto.bounds.size
+        let imageScale = collectionView.traitCollection.displayScale
+        
+//        if let data = camera.photo {
+//            cell.cameraPhoto.image = UIImage.downsample(imageWithData: data, to: cell.cameraPhoto.bounds.size, scale: collectionView.traitCollection.displayScale) ?? #imageLiteral(resourceName: "CameraDefaultPicture")
+//        } else {
+//            cell.cameraPhoto.image = #imageLiteral(resourceName: "CameraDefaultPicture")
+//        }
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = imageScale
+        
+        serialQueue.async {
+            if  let data = self.fetchedResultsController?.object(at: indexPath).photo,
+                let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
+                
+                
+                DispatchQueue.main.async {
+                    cell.cameraPhoto.image = downsampledImage
+                }
+                
+                
+            }
+        }
+        
         cell.cameraNameLabel.text = camera.name
         
         let image = (camera.favourite) ? #imageLiteral(resourceName: "HeartFill") : #imageLiteral(resourceName: "HeartOutline")
@@ -203,6 +230,35 @@ extension CamerasViewController: CameraCellDelegate {
 //        cell.backgroundColor = .blue
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        // Asynchronously decode and downsample every image we are about to show
+        let imageScale = collectionView.traitCollection.displayScale
+        var cells = [CameraCollectionViewCell]()
+        var indexPathArray = [IndexPath]()
+        for index in indexPaths {
+            if let cell = collectionView.cellForItem(at: index) as? CameraCollectionViewCell {
+                cells.append(cell)
+                indexPathArray.append(index)
+            }
+        }
+        
+        for (i, cell) in cells.enumerated() {
+            let imageSize = cell.cameraPhoto.bounds.size
+            serialQueue.async {
+                if  let data = self.fetchedResultsController?.object(at: indexPathArray[i]).photo,
+                    let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
+                    
+                    
+                    DispatchQueue.main.async {
+                        cell.cameraPhoto.image = downsampledImage
+                    }
+                    
+                    
+                }
+            }
+        }
     }
 }
 

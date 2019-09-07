@@ -12,7 +12,7 @@ import CoreData
 class FilmViewController: FetchedResultsCollectionViewController, UICollectionViewDelegateFlowLayout {
     
     //MARK: variables for data source
-    
+    let serialQueue = DispatchQueue(label: "filmsvc decoding queue")
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var fetchedResultsController: NSFetchedResultsController<Film>?
     var spacing: CGFloat = 0.05 * UIScreen.main.bounds.width //Cell width is 25.6% of screen width. This is the remainder.
@@ -58,7 +58,7 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
         super.viewWillAppear(animated)
         
         isEditing = false
-//        updateUI()
+        updateUI()
     }
     
     override func viewDidLoad() {
@@ -79,18 +79,30 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
         definesPresentationContext = true
         
         setupBarButtons()
-        updateUI()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addfilmsegue",
+        if  segue.identifier == "addfilmsegue",
             let destVC = segue.destination as? FilmDetailViewController {
+            
             destVC.container = container
             if let _ = sender as? UIBarButtonItem {
                 destVC.isAddingFilmToDatabase = true
             } else {
                 destVC.isAddingFilmToDatabase = false
             }
+        }
+        
+        if  segue.identifier == "filmdetailsegue",
+            let destVC = segue.destination as? BasePhotosCollectionViewController,
+            let sender = sender as? FilmCollectionViewCell,
+            let index = collectionView.indexPath(for: sender),
+            let film = fetchedResultsController?.object(at: index) {
+            
+            destVC.container = container
+            destVC.film = film
+            destVC.navigationItem.title = film.name ?? "Film #\(index.row + 1)"
+            
         }
     }
 }
@@ -165,29 +177,55 @@ extension FilmViewController: FilmCellDelegate {
         cell.midImg.image = nil
         cell.backImg.image = nil
         
-        let photos = film.getPhotos()
-        if !photos.isEmpty { //the film has some pictures
-            
-            cell.topImg.image = photos.last!.getUIImage()
-            
-            if photos.count >= 2 {
-                cell.midImg.image = photos[photos.count - 2].getUIImage()
-                cell.setupShadow(for: cell.midImg)
-            } else {
-                cell.midImg.image = nil
+        let topImageSize = cell.topImg.bounds.size
+        let midImageSize = cell.midImg.bounds.size
+        let backImageSize = cell.backImg.bounds.size
+        let imageScale = collectionView.traitCollection.displayScale
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = imageScale
+        
+        serialQueue.async {
+            if let film = self.fetchedResultsController?.object(at: indexPath) {
+                
+                let photos = film.getPhotos()
+                let topPicture = photos.last
+                let midPicture = (photos.count >= 2) ? photos[photos.count - 2] : nil
+                let backPicture = (photos.count >= 3) ? photos[photos.count - 3] : nil
+                
+                if  let topData = topPicture?.file,
+                    let downsampled = UIImage.downsample(imageWithData: topData, to: topImageSize, scale: imageScale) {
+                    DispatchQueue.main.async {
+                        cell.topImg.image = downsampled
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.topImg.image = #imageLiteral(resourceName: "FilmOutline")
+                    }
+                }
+                
+                if  let midData = midPicture?.file,
+                    let downsampled = UIImage.downsample(imageWithData: midData, to: midImageSize, scale: imageScale) {
+                    DispatchQueue.main.async {
+                        cell.midImg.image = downsampled
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.midImg.image = nil
+                    }
+                }
+                
+                if  let backData = backPicture?.file,
+                    let downsampled = UIImage.downsample(imageWithData: backData, to: backImageSize, scale: imageScale) {
+                    DispatchQueue.main.async {
+                        cell.backImg.image = downsampled
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        cell.backImg.image = nil
+                    }
+                }
             }
-            
-            if photos.count >= 3 {
-                cell.backImg.image = photos[photos.count - 3].getUIImage()
-                cell.setupShadow(for: cell.backImg)
-            } else {
-                cell.backImg.image = nil
-            }
-            
-        } else { //the film has no pictures
-            cell.topImg.image = #imageLiteral(resourceName: "FilmOutline")
-            cell.midImg.image = nil
-            cell.backImg.image = nil
         }
         
         cell.filmNameLabel.text = film.name
@@ -198,11 +236,13 @@ extension FilmViewController: FilmCellDelegate {
     //MARK: Navigation
     //NOTE: When the user taps on one of the films, they are taken to the photos that belong to the film they tapped. There, they will have (1) a button on the right to add another frame to the film and (2) a button on the left to see the propoerties of the film, which will take them to the FilmDetalVC with "isAddingFilmToDatabase" being false.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+//        let filmDetailVC = UIStoryboard(name: "FilmDetail", bundle: nil).instantiateViewController(withIdentifier: "filmdetailvc") as! FilmDetailViewController
+//        filmDetailVC.isAddingFilmToDatabase = false
+//        filmDetailVC.film = fetchedResultsController?.object(at: indexPath)
+//        navigationController?.pushViewController(filmDetailVC, animated: true)
         
-        let filmDetailVC = UIStoryboard(name: "FilmDetail", bundle: nil).instantiateViewController(withIdentifier: "filmdetailvc") as! FilmDetailViewController
-        filmDetailVC.isAddingFilmToDatabase = false
-        filmDetailVC.film = fetchedResultsController?.object(at: indexPath)
-        navigationController?.pushViewController(filmDetailVC, animated: true)
+        performSegue(withIdentifier: "filmdetailsegue", sender: collectionView.cellForItem(at: indexPath) as! FilmCollectionViewCell)
     }
 }
 

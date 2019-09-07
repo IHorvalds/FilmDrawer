@@ -18,6 +18,7 @@
 		206C758022B2DFF70044A5CD /* Film_Drawer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 206C757E22B2DFF70044A5CD /* Film_Drawer.xcdatamodeld */; };
 		206C758222B2DFF80044A5CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 206C758122B2DFF80044A5CD /* Assets.xcassets */; };
 		206C758522B2DFF80044A5CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 206C758322B2DFF80044A5CD /* LaunchScreen.storyboard */; };
+		2078CC32232400110094C59D /* UIImage+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2078CC31232400110094C59D /* UIImage+extension.swift */; };
 		208981F722FB1648008F4562 /* FullWidthCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */; };
 		208981F922FC734C008F4562 /* FetchedResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208981F822FC734C008F4562 /* FetchedResultsController.swift */; };
 		20BA9F8822ECA63C00C35F7F /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EC46D622EBA71100CFB041 /* Camera.swift */; };
@@ -74,6 +75,7 @@
 		206C758122B2DFF80044A5CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		206C758422B2DFF80044A5CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		206C758622B2DFF80044A5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2078CC31232400110094C59D /* UIImage+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+extension.swift"; sourceTree = "<group>"; };
 		208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullWidthCollectionViewController.swift; sourceTree = "<group>"; };
 		208981F822FC734C008F4562 /* FetchedResultsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsController.swift; sourceTree = "<group>"; };
 		20BEFDF4231543A100CDACA4 /* CameraPictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPictureCell.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				208981F622FB1648008F4562 /* FullWidthCollectionViewController.swift */,
 				208981F822FC734C008F4562 /* FetchedResultsController.swift */,
 				20D5652A231D873600CD28E5 /* BasePhotoCollectionViewController.swift */,
+				2078CC31232400110094C59D /* UIImage+extension.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				20D5652B231D873600CD28E5 /* BasePhotoCollectionViewController.swift in Sources */,
 				20EC46DB22EBA72200CFB041 /* Photo.swift in Sources */,
 				20D56538232281AC00CD28E5 /* MapCollectionViewCell.swift in Sources */,
+				2078CC32232400110094C59D /* UIImage+extension.swift in Sources */,
 				20E5520323030B5E007569DE /* PhotosViewController.swift in Sources */,
 				20D5653C232281CC00CD28E5 /* MLDescriptionCollectionViewCell.swift in Sources */,
 				20E5522123032592007569DE /* FilmDetailViewController.swift in Sources */,

@@ -55,6 +55,8 @@ class FilmCollectionViewCell: UICollectionViewCell {
         self.clipsToBounds = false
         
         setupShadow(for: topImg)
+        setupShadow(for: midImg)
+        setupShadow(for: backImg)
     }
     
     public func setupShadow(for imageView: UIImageView) {

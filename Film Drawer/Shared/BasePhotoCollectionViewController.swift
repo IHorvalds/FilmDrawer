@@ -10,10 +10,10 @@ import UIKit
 
 import CoreData
 
-class BasePhotosCollectionViewController: FetchedResultsCollectionViewController, UICollectionViewDelegateFlowLayout {
+class BasePhotosCollectionViewController: FetchedResultsCollectionViewController, UICollectionViewDataSourcePrefetching, UICollectionViewDelegateFlowLayout {
     
     //MARK: variables for data source
-    
+    let serialQueue = DispatchQueue(label: "photovc decoding queue")
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var fetchedResultsController: NSFetchedResultsController<Photo>?
     var camera: Camera?
@@ -75,6 +75,8 @@ class BasePhotosCollectionViewController: FetchedResultsCollectionViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        collectionView.prefetchDataSource = self
         
         collectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "photocell")
         
@@ -149,9 +151,57 @@ extension BasePhotosCollectionViewController { //MARK: Collection View Data sour
         cell.isUserInteractionEnabled = true
         cell.delegate = self
         
-        cell.image.image = photo.getUIImage()
+        
+        let imageSize = cell.bounds.size
+        let imageScale = collectionView.traitCollection.displayScale
+        
+        cell.layer.shouldRasterize = true
+        cell.layer.rasterizationScale = imageScale
+        
+        serialQueue.async {
+            if  let data = photo.file,
+                let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
+                
+                
+                DispatchQueue.main.async {
+                    cell.image.image = downsampledImage
+                }
+                
+                
+            }
+        }
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        // Asynchronously decode and downsample every image we are about to show
+        let imageScale = collectionView.traitCollection.displayScale
+        var cells = [PhotoCollectionViewCell]()
+        var photos = [Photo]()
+        for index in indexPaths {
+            if let photo = fetchedResultsController?.object(at: index),
+                let cell = collectionView.cellForItem(at: index) as? PhotoCollectionViewCell {
+                cells.append(cell)
+                photos.append(photo)
+            }
+        }
+        
+        for (i, cell) in cells.enumerated() {
+            serialQueue.async {
+                let imageSize = cell.bounds.size
+                if  let data = photos[i].file,
+                    let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
+                    
+                    
+                    DispatchQueue.main.async {
+                        cell.image.image = downsampledImage
+                    }
+                    
+                    
+                }
+            }
+        }
     }
 }
 
