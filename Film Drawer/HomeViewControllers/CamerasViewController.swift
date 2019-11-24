@@ -8,15 +8,16 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
-class CamerasViewController: FetchedResultsCollectionViewController, UICollectionViewDataSourcePrefetching, UICollectionViewDelegateFlowLayout {
+class CamerasViewController: FetchedResultsCollectionViewController, UICollectionViewDelegateFlowLayout {
     
 
     //MARK: variables for data source
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var fetchedResultsController: NSFetchedResultsController<Camera>?
-    let serialQueue = DispatchQueue(label: "Decode queue")
+//    let serialQueue = DispatchQueue(label: "Decode queue")
     //2 objects per row
     var spacing: CGFloat = 0.05 * UIScreen.main.bounds.width //Cell width is 25.6% of screen width. This is the remainder.
     
@@ -40,7 +41,7 @@ class CamerasViewController: FetchedResultsCollectionViewController, UICollectio
         if let context = container?.viewContext {
             let fetchRequest: NSFetchRequest<Camera> = Camera.fetchRequest()
             fetchRequest.predicate = predicate
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "favourite", ascending: false), NSSortDescriptor(key: "dateAdded", ascending: false)]
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "favourite", ascending: false), NSSortDescriptor(key: "name", ascending: true), NSSortDescriptor(key: "dateAdded", ascending: false)]
             
             fetchedResultsController = NSFetchedResultsController<Camera>(fetchRequest: fetchRequest,
                                                                           managedObjectContext: context,
@@ -64,13 +65,11 @@ class CamerasViewController: FetchedResultsCollectionViewController, UICollectio
         super.viewWillAppear(animated)
         
         isEditing = false
-        
+        updateUI()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.prefetchDataSource = self
         
         //register the xib file for the film cell
         collectionView.register(UINib(nibName: "CameraCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "cameracell")
@@ -81,12 +80,11 @@ class CamerasViewController: FetchedResultsCollectionViewController, UICollectio
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search cameras"
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
         setupBarButtons()
-        
-        updateUI()
+        setupCollectionViewPersona()
     }
 
 }
@@ -96,6 +94,22 @@ extension CamerasViewController { //MARK: Helper functions
     fileprivate func setupBarButtons() {
         doneDeletingButton = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(stopEditing(_:)))
         addCameraButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCameraVC(_:)))
+        
+        doneDeletingButton.tintColor = .systemYellow
+        addCameraButton.tintColor = .systemYellow
+    }
+    
+    fileprivate func setupCollectionViewPersona() {
+        let backgroundView = UIView()
+        let image = UIImageView(image: #imageLiteral(resourceName: "Efefantel"))
+        image.contentMode = .scaleAspectFill
+        collectionView.backgroundView = backgroundView
+        backgroundView.addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+        image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }
     
     @objc fileprivate func goToAddCameraVC(_ sender: UIBarButtonItem) {
@@ -154,7 +168,7 @@ extension CamerasViewController: CameraCellDelegate {
                     print("\(error.localizedDescription)")
                 }
             }
-            updateUI()
+//            updateUI()
         }
         
     }
@@ -163,6 +177,10 @@ extension CamerasViewController: CameraCellDelegate {
         if  let index = collectionView.indexPath(for: cell),
             let camera = fetchedResultsController?.object(at: index),
             let context = container?.viewContext {
+            
+            if let url = camera.photo {
+                ImageFileManager.shared.delete(file: url, handler: nil)
+            }
             
             context.delete(camera)
             try? context.save()
@@ -200,65 +218,29 @@ extension CamerasViewController: CameraCellDelegate {
         let imageSize = cell.cameraPhoto.bounds.size
         let imageScale = collectionView.traitCollection.displayScale
         
-//        if let data = camera.photo {
-//            cell.cameraPhoto.image = UIImage.downsample(imageWithData: data, to: cell.cameraPhoto.bounds.size, scale: collectionView.traitCollection.displayScale) ?? #imageLiteral(resourceName: "CameraDefaultPicture")
-//        } else {
-//            cell.cameraPhoto.image = #imageLiteral(resourceName: "CameraDefaultPicture")
-//        }
+        if let imageUrl = camera.photo {
+            let provider = LocalFileImageDataProvider(fileURL: imageUrl)
+            let processor = DownsamplingImageProcessor(size: imageSize) |> RoundCornerImageProcessor(cornerRadius: 5.0)
+            let placeholder = #imageLiteral(resourceName: "CameraDefaultPictureLarge")
+            cell.cameraPhoto.kf.setImage(with: provider,
+                                         placeholder: placeholder,
+                                         options: [
+                .processor(processor),
+                .scaleFactor(imageScale),
+                .cacheOriginalImage])
+        } else {
+            cell.cameraPhoto.image = #imageLiteral(resourceName: "CameraDefaultPicture")
+        }
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = imageScale
-        
-        serialQueue.async {
-            if  let data = self.fetchedResultsController?.object(at: indexPath).photo,
-                let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
-                
-                
-                DispatchQueue.main.async {
-                    cell.cameraPhoto.image = downsampledImage
-                }
-                
-                
-            }
-        }
         
         cell.cameraNameLabel.text = camera.name
         
         let image = (camera.favourite) ? #imageLiteral(resourceName: "HeartFill") : #imageLiteral(resourceName: "HeartOutline")
         cell.favouriteButton.setImage(image, for: .normal)
         
-//        cell.backgroundColor = .blue
-        
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        // Asynchronously decode and downsample every image we are about to show
-        let imageScale = collectionView.traitCollection.displayScale
-        var cells = [CameraCollectionViewCell]()
-        var indexPathArray = [IndexPath]()
-        for index in indexPaths {
-            if let cell = collectionView.cellForItem(at: index) as? CameraCollectionViewCell {
-                cells.append(cell)
-                indexPathArray.append(index)
-            }
-        }
-        
-        for (i, cell) in cells.enumerated() {
-            let imageSize = cell.cameraPhoto.bounds.size
-            serialQueue.async {
-                if  let data = self.fetchedResultsController?.object(at: indexPathArray[i]).photo,
-                    let downsampledImage = UIImage.downsample(imageWithData: data, to: imageSize, scale: imageScale) {
-                    
-                    
-                    DispatchQueue.main.async {
-                        cell.cameraPhoto.image = downsampledImage
-                    }
-                    
-                    
-                }
-            }
-        }
     }
 }
 

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +17,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="120" height="159"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xf-3c-0vL">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CameraDefaultPicture" translatesAutoresizingMaskIntoConstraints="NO" id="iy4-1S-UuP">
                         <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                         <constraints>
@@ -53,13 +47,12 @@
                             <constraint firstAttribute="width" constant="32" id="Ftw-mN-GDk"/>
                             <constraint firstAttribute="width" secondItem="4iN-sf-r94" secondAttribute="height" multiplier="1:1" id="hwy-IC-cP0"/>
                         </constraints>
-                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" image="exit"/>
                     </button>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="7Xf-3c-0vL" firstAttribute="centerY" secondItem="iy4-1S-UuP" secondAttribute="centerY" id="3h3-fn-6KM"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="iy4-1S-UuP" secondAttribute="leading" id="6Rr-WH-Aph"/>
                 <constraint firstItem="gb8-Ga-s5R" firstAttribute="bottom" secondItem="iy4-1S-UuP" secondAttribute="bottom" constant="-5" id="6rs-hz-Cvi"/>
                 <constraint firstItem="gb8-Ga-s5R" firstAttribute="trailing" secondItem="iy4-1S-UuP" secondAttribute="trailing" constant="-5" id="Aew-LQ-ORJ"/>
@@ -69,11 +62,8 @@
                 <constraint firstItem="DDn-4G-vRV" firstAttribute="bottom" secondItem="gTV-IL-0wX" secondAttribute="bottom" id="UeB-Ni-IzF"/>
                 <constraint firstItem="DDn-4G-vRV" firstAttribute="top" secondItem="iy4-1S-UuP" secondAttribute="bottom" id="VG0-Ag-buw"/>
                 <constraint firstAttribute="top" secondItem="4iN-sf-r94" secondAttribute="top" constant="-2" id="XVr-oB-AMi"/>
-                <constraint firstItem="7Xf-3c-0vL" firstAttribute="width" secondItem="iy4-1S-UuP" secondAttribute="width" id="f64-Aw-Zog"/>
-                <constraint firstItem="7Xf-3c-0vL" firstAttribute="centerX" secondItem="iy4-1S-UuP" secondAttribute="centerX" id="fjv-d7-afd"/>
                 <constraint firstItem="iy4-1S-UuP" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="width" id="hHF-eN-xBh"/>
                 <constraint firstAttribute="top" secondItem="iy4-1S-UuP" secondAttribute="top" id="iLX-Sm-zJP"/>
-                <constraint firstItem="7Xf-3c-0vL" firstAttribute="height" secondItem="iy4-1S-UuP" secondAttribute="height" id="kFL-BR-DuA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="120" height="159"/>
@@ -83,7 +73,6 @@
                 <outlet property="deleteButton" destination="4iN-sf-r94" id="JsD-hA-Aq1"/>
                 <outlet property="favouriteButton" destination="gb8-Ga-s5R" id="wYb-7D-ADy"/>
                 <outlet property="favouriteButtonHeight" destination="0fb-Bp-3kH" id="wEa-49-RA8"/>
-                <outlet property="pictureContainer" destination="7Xf-3c-0vL" id="5B1-VY-mjn"/>
             </connections>
             <point key="canvasLocation" x="188.40579710144928" y="189.17410714285714"/>
         </collectionViewCell>

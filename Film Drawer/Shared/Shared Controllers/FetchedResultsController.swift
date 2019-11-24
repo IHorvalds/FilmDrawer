@@ -10,14 +10,7 @@ import UIKit
 import CoreData
 
 class FetchedResultsCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
-    
-    var shouldReloadCollectionView: Bool = false {
-        didSet {
-            if shouldReloadCollectionView {
-                collectionView.reloadData()
-            }
-        }
-    }
+
     var blockOperations: [BlockOperation] = []
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -27,44 +20,49 @@ class FetchedResultsCollectionViewController: UICollectionViewController, NSFetc
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         if type == .insert {
-            print("Insert Object: \(newIndexPath)")
+            print("Insert Object: \(String(describing: newIndexPath))")
             
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
-                    if let self = self {
-                        self.collectionView!.insertItems(at: [newIndexPath!])
+                    if  let self = self,
+                        let newIndexPath = newIndexPath {
+                        self.collectionView!.insertItems(at: [newIndexPath])
                     }
                 })
             )
         }
         else if type == .update {
-            print("Update Object: \(indexPath)")
+            print("Update Object: \(String(describing: indexPath))")
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
-                    if let self = self {
-                        self.collectionView!.reloadItems(at: [indexPath!])
+                    if  let self = self,
+                        let indexPath = indexPath {
+                        self.collectionView!.reloadItems(at: [indexPath])
                     }
                 })
             )
         }
         else if type == .move {
-            print("Move Object: \(indexPath)")
+            print("Move Object: \(String(describing: indexPath))")
             
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
-                    if let self = self {
-                        self.collectionView!.moveItem(at: indexPath!, to: newIndexPath!)
+                    if  let self = self,
+                        let indexPath = indexPath,
+                        let newIndexPath = newIndexPath {
+                        self.collectionView!.moveItem(at: indexPath, to: newIndexPath)
                     }
                 })
             )
         }
         else if type == .delete {
-            print("Delete Object: \(indexPath)")
+            print("Delete Object: \(String(describing: indexPath))")
             
             blockOperations.append(
                 BlockOperation(block: { [weak self] in
-                    if let self = self {
-                        self.collectionView!.deleteItems(at: [indexPath!])
+                    if  let self = self,
+                        let indexPath = indexPath {
+                        self.collectionView!.deleteItems(at: [indexPath])
                     }
                 })
             )
@@ -106,14 +104,16 @@ class FetchedResultsCollectionViewController: UICollectionViewController, NSFetc
             )
         }
     }
+    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        collectionView.performBatchUpdates({ () -> Void in
-            for operation: BlockOperation in self.blockOperations {
+        self.collectionView.performBatchUpdates({
+            for operation in self.blockOperations {
                 operation.start()
             }
-        }, completion: { (finished) -> Void in
+        }) { [weak self ](_) in
+            guard let self = self else { return }
             self.blockOperations.removeAll(keepingCapacity: false)
-        })
+        }
     }
     
     deinit {

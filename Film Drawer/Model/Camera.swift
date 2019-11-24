@@ -69,15 +69,6 @@ public class Camera: NSManagedObject {
         return []
     }
     
-    func getUIImage() -> UIImage? {
-        if  let data = self.photo,
-            let image = UIImage(data: data) {
-            return image
-        } else {
-            return nil
-        }
-    }
-    
     func hasPhotos(in context: NSManagedObjectContext) -> Bool {
         let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "belongsTo.shotOn = %@", self)

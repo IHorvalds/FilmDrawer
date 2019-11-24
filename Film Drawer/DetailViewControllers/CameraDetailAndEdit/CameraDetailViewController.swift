@@ -10,19 +10,16 @@ import UIKit
 import CoreData
 import AVFoundation
 import Photos
+import Kingfisher
 
 class CameraDetailViewController: UITableViewController {
     
     let imagePicker = UIImagePickerController()
+    let cameraCaptureManager = CameraCaptureManager.shared
     
     var camera: Camera?
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
-    //Camera Capture vars
-    var previewLayer:AVCaptureVideoPreviewLayer!
-    var captureDevice: AVCaptureDevice!
-    var capturePhotoOutput: AVCapturePhotoOutput!
-    var session: AVCaptureSession!
     lazy var shouldCaptureNewImage: Bool = true
 
     lazy var isAddingNewCamera: Bool = true
@@ -40,10 +37,13 @@ class CameraDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed(_:)))
         cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonPressed(_:)))
         
         imagePicker.delegate = self
+        
+        cameraCaptureManager.delegate = self
         
         navigationItem.title = (camera == nil) ? "Add camera" : camera?.name
         
@@ -55,20 +55,12 @@ class CameraDetailViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = doneButton
     }
-    
-    deinit {
-        camera = nil
-        previewLayer = nil
-        session = nil
-        captureDevice = nil
-        capturePhotoOutput = nil
-    }
 }
 
 extension CameraDetailViewController { //Helper functions
     
     @objc fileprivate func cancelButtonPressed(_ sender: UIBarButtonItem) {
-        if  !(camera?.addIdIfCompleteEnough() ?? true),
+        if  isAddingNewCamera,
             let camera = camera {
             container?.viewContext.delete(camera)
         }
@@ -113,99 +105,14 @@ extension CameraDetailViewController { //Helper functions
         tableView.reloadData()
     }
     
-    fileprivate func alertForPermissions(title: String, message: String) {
-        let alert = UIAlertController(title: title,
-                                      message: message, preferredStyle: .alert)
-        
-        alert.addAction(.init(title: "Review access", style: .default, handler: { (_) in
-            //take user to settings
-            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-                return
-            }
-            
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
-                    print("Settings opened: \(success)") // Prints true
-                })
-            }
-        }))
-        
-        alert.addAction(.init(title: "Keep no access", style: .cancel, handler: { [weak self] (_) in
-            guard let self = self else { return }
-            self.shouldCaptureNewImage = false
-            self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
-            
-        }))
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
-    fileprivate func checkAccessForCamera(_ cameraCell: CameraPictureCell) {
-        //Do we have permission for camera?
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { granted in
-                if granted {
-                    self.setupAVCapture(sender: cameraCell)
-                } else {
-                    self.alertForPermissions(title: "Camera access error", message: "Camera access is necessary for taking preview pictures of your shots and, optionally, of your cameras.")
-                }
-            }
-        case .restricted:
-            alertForPermissions(title: "Camera access error", message: "Camera access is necessary for taking preview pictures of your shots and, optionally, of your cameras.")
-        case .denied:
-            alertForPermissions(title: "Camera access error", message: "Camera access is necessary for taking preview pictures of your shots and, optionally, of your cameras.")
-        case .authorized:
-            setupAVCapture(sender: cameraCell)
-        default:
-            break
-        }
-    }
-    
-    fileprivate func checkForPhotosPermission() -> Bool {
-        var authorized = false
-        
-        switch PHPhotoLibrary.authorizationStatus(){
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { (status) in
-                if status == .authorized {
-                    self.imagePicker.sourceType = .photoLibrary
-                    authorized = true
-                } else {
-                    self.alertForPermissions(title: "Photo library access error", message: "Please allow access to your photo library in order to choose a picture from there.")
-                }
-            }
-        case .restricted:
-            alertForPermissions(title: "Photo library access error", message: "Please allow access to your photo library in order to choose a picture from there.")
-        case .denied:
-            alertForPermissions(title: "Photo library access error", message: "Please allow access to your photo library in order to choose a picture from there.")
-        case .authorized:
-            imagePicker.sourceType = .photoLibrary
-            authorized = true
-        default:
-            print("eh?")
-        }
-        
-        return authorized
-    }
-    
     @objc fileprivate func capturePicture() {
-        //Capture the image and add it to the database
-        print("Snap!")
-        
-        let captureSettings: AVCapturePhotoSettings
-        if capturePhotoOutput.availablePhotoCodecTypes.contains(.hevc) {
-            captureSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
-        } else {
-            captureSettings = AVCapturePhotoSettings()
-        }
-        capturePhotoOutput.capturePhoto(with: captureSettings, delegate: self)
+        cameraCaptureManager.capturePicture()
         
         shouldCaptureNewImage = false
     }
     
     @objc fileprivate func chooseFromGallery() {
-        if checkForPhotosPermission() {
+        if cameraCaptureManager.checkForPhotosPermission() {
             present(imagePicker, animated: true, completion: nil)
         }
     }
@@ -238,6 +145,14 @@ extension CameraDetailViewController { //MARK: TableView Data source and delegat
         }
         
         return "Description"
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        if section == 0 {
+            return "You need to give your camera a name. Other parameters are optional."
+        }
+    
+        return nil
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -280,11 +195,26 @@ extension CameraDetailViewController { //MARK: TableView Data source and delegat
             
             if shouldCaptureNewImage {
                 cameraCell.cameraPreview.contentMode = .scaleAspectFit
-                
-                checkAccessForCamera(cameraCell)
+                cameraCaptureManager.setupCameraOutput(previewView: cameraCell.cameraPreview)
             } else {
-                let image = camera?.getUIImage()
-                cameraCell.cameraPicture.image = image ?? #imageLiteral(resourceName: "CameraDefaultPictureLarge")
+                
+                let imageScale = tableView.traitCollection.displayScale
+                let imageSize = cameraCell.cameraPicture.bounds.size
+                
+                if  let imageUrl = camera?.photo {
+                    
+                    let provider = LocalFileImageDataProvider(fileURL: imageUrl)
+                    let processor = DownsamplingImageProcessor(size: imageSize)
+                    let placeholder = #imageLiteral(resourceName: "CameraDefaultPictureLarge")
+                    cameraCell.cameraPicture.kf.setImage(with: provider,
+                                                 placeholder: placeholder,
+                                                 options: [
+                        .processor(processor),
+                        .scaleFactor(imageScale),
+                        .cacheOriginalImage])
+                } else {
+                    cameraCell.cameraPicture.image = #imageLiteral(resourceName: "CameraDefaultPicture")
+                }
             }
             
             
@@ -335,81 +265,67 @@ extension CameraDetailViewController: DescriptionCellDelegate {
     }
 }
 
-extension CameraDetailViewController:  AVCaptureVideoDataOutputSampleBufferDelegate, AVCapturePhotoCaptureDelegate {
+extension CameraDetailViewController: PhotoPickerDelegate {
     
-    func setupAVCapture(sender: CameraPictureCell) {
-        session = AVCaptureSession()
-        session.sessionPreset = AVCaptureSession.Preset.photo
-        guard let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-                        return
-        }
-        captureDevice = device
-        beginSession(previewView: sender.cameraPreview)
+    func shouldStopCameraRecording() {
+        shouldCaptureNewImage = false
     }
     
-    func beginSession(previewView: UIView) {
-        var deviceInput: AVCaptureDeviceInput!
+    
+    func processImage(image: CGImage) {
+        saveImage(cropImageToSquare(image: image, orientation: .right))
+        tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+    }
+    
+    fileprivate func cropImageToSquare(image: CGImage, orientation: UIImage.Orientation) -> UIImage {
+        //Trying to crop to a square
+        let scale = tableView.traitCollection.displayScale
+        let size = (image.width > image.height) ? image.height : image.width
+        let rectToCrop = CGRect(x: (image.width-size)/2, y: (image.height-size)/2, width: size, height: size)
         
-        do {
-            deviceInput = try AVCaptureDeviceInput(device: captureDevice)
-            guard deviceInput != nil else {
-                print("error: cant get deviceInput")
-                return
+        if let croppedImage = image.cropping(to: rectToCrop) {
+            let image = UIImage(cgImage: croppedImage, scale: scale, orientation: orientation)
+            
+            if cameraCaptureManager.checkForPhotosPermission() {
+                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
             }
             
-            if session.canAddInput(deviceInput) {
-                session.addInput(deviceInput)
-            }
-            
-            capturePhotoOutput = AVCapturePhotoOutput()
-            capturePhotoOutput.isHighResolutionCaptureEnabled = true
-            
-            if session.canAddOutput(capturePhotoOutput) {
-                session.addOutput(capturePhotoOutput)
-            }
-            
-            previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
-            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            
-            DispatchQueue.main.async {
-                let rootLayer: CALayer = previewView.layer
-                rootLayer.masksToBounds = true
-                self.previewLayer.frame = rootLayer.bounds
-                rootLayer.addSublayer(self.previewLayer)
-            }
-            
-            DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-                self?.session.startRunning()
-            }
-        } catch {
-            deviceInput = nil
-            print("error: \(error.localizedDescription)")
-        }
-    }
-    
-    // clean up AVCapture
-    func stopCamera() {
-        session.stopRunning()
-    }
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
-        if  error == nil,
-            let imageData = photo.cgImageRepresentation()?.takeUnretainedValue() {
-            //Trying to crop to a square
-            let size = (imageData.width > imageData.height) ? imageData.height : imageData.width
-            let rectToCrop = CGRect(x: (imageData.width-size)/2, y: (imageData.height-size)/2, width: size, height: size)
-            if let croppedImage = imageData.cropping(to: rectToCrop) {
-                camera?.photo = UIImage(cgImage: croppedImage, scale: 1, orientation: .right).jpegData(compressionQuality: 0.9)
-            } else {
-                //if we can't, then just save the whole picture
-                camera?.photo = photo.fileDataRepresentation()
-            }
-            tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+            return image
         } else {
-            print("\(String(describing: error))")
+            return UIImage(cgImage: image, scale: scale, orientation: orientation)
         }
-        stopCamera()
+    }
+    
+    fileprivate func saveImage(_ image: UIImage) {
+        if  let rotatedImage = image.rotateImage(),
+            let imageData = rotatedImage.pngData() {
+            
+            if let url = camera?.photo {
+                ImageFileManager.shared.delete(file: url) {[weak self] (success, error) in
+                    guard let self = self else { return }
+                    if error != nil {
+                        let alert = UIAlertController(title: "Oops", message: "An error occured saving your camera's picture: \(String(describing: error!))", preferredStyle: .alert)
+                        
+                        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+            
+            
+            let filename = "Camera-\(UUID()).PNG"
+            ImageFileManager.shared.saveFile(with: imageData, filename: filename) {[weak self] (success, url, error) in
+                guard let self = self else { return }
+                if error != nil {
+                    let alert = UIAlertController(title: "Oops", message: "An error occured saving your camera's picture: \(String(describing: error!))", preferredStyle: .alert)
+                    
+                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                } else if let url = url {
+                    self.camera?.photo = url
+                }
+            }
+        }
     }
     
 }
@@ -455,14 +371,14 @@ extension CameraDetailViewController { //MARK: Navigation
 
 extension CameraDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            camera?.photo = editedImage.jpegData(compressionQuality: 0.9)
+        if  let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage,
+            let cgImage = editedImage.cgImage {
+            saveImage(cropImageToSquare(image: cgImage, orientation: .up))
             changeShouldCaptureNewImage()
-        } else {
-            if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                camera?.photo = originalImage.jpegData(compressionQuality: 0.9)
-                changeShouldCaptureNewImage()
-            }
+        } else if   let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage,
+            let cgImage = originalImage.cgImage {
+            saveImage(cropImageToSquare(image: cgImage, orientation: .up))
+            changeShouldCaptureNewImage()
         }
         
         picker.dismiss(animated: true, completion: nil)

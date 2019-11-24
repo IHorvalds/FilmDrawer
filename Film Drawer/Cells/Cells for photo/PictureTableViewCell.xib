@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="picturecell" rowHeight="213" id="KGk-i7-Jjw" customClass="PictureTableViewCell" customModule="Film_Drawer" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6d4-8r-CVy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3La-Qi-3eX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GAF-sx-aPn">
+                        <rect key="frame" x="15" y="147" width="290" height="56"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xv9-jC-ydV" customClass="RoundedButton" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="13" width="96" height="30"/>
+                                <state key="normal" title="Preview">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backCol">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-eo-EIa">
+                                <rect key="frame" x="104" y="0.0" width="82" height="56"/>
+                                <color key="tintColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="imageEdgeInsets" minX="-11" minY="-11" maxX="-11" maxY="-11"/>
+                                <state key="normal" image="PictureButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxs-or-bpd" customClass="RoundedButton" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="194" y="13" width="96" height="30"/>
+                                <state key="normal" title="Choose">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backCol">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="xv9-jC-ydV" firstAttribute="width" secondItem="vxs-or-bpd" secondAttribute="width" id="OfZ-6J-Ufp"/>
+                            <constraint firstItem="xv9-jC-ydV" firstAttribute="height" secondItem="vxs-or-bpd" secondAttribute="height" id="bug-p2-abj"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="3La-Qi-3eX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2ev-Gb-km1"/>
+                    <constraint firstItem="6d4-8r-CVy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6db-5K-kBv"/>
+                    <constraint firstItem="6d4-8r-CVy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8d5-5A-kv6"/>
+                    <constraint firstItem="6d4-8r-CVy" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="Bdf-1p-ziA"/>
+                    <constraint firstItem="3La-Qi-3eX" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="RMd-AR-ezx"/>
+                    <constraint firstItem="3La-Qi-3eX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="ZVW-Dy-Hj5"/>
+                    <constraint firstItem="3La-Qi-3eX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="by1-Cg-mOd"/>
+                    <constraint firstItem="6d4-8r-CVy" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="p3S-oY-pSt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="GAF-sx-aPn" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="width" constant="-30" id="7Hi-Tx-rBZ"/>
+                <constraint firstItem="njF-e1-oar" firstAttribute="bottom" secondItem="GAF-sx-aPn" secondAttribute="bottom" constant="10" id="YsJ-h5-FoE"/>
+                <constraint firstItem="GAF-sx-aPn" firstAttribute="centerX" secondItem="njF-e1-oar" secondAttribute="centerX" id="das-1q-apQ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="choosePhotoButton" destination="vxs-or-bpd" id="a6A-Dq-Vzu"/>
+                <outlet property="pictureView" destination="6d4-8r-CVy" id="ihh-VF-5qb"/>
+                <outlet property="previewButton" destination="xv9-jC-ydV" id="vuu-3v-iNn"/>
+                <outlet property="previewView" destination="3La-Qi-3eX" id="NtW-WI-dCf"/>
+                <outlet property="takePhotoButton" destination="aRe-eo-EIa" id="F3S-u8-zvo"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="209.26339285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="PictureButton" width="56" height="56"/>
+    </resources>
+</document>

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WOK-cz-5Hs">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WOK-cz-5Hs">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,10 +11,10 @@
         <scene sceneID="Z4V-OO-rta">
             <objects>
                 <collectionViewController id="10f-bM-jFw" customClass="CamerasViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="DRx-Yt-1VT">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="DRx-Yt-1VT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ri9-W5-r5l">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -39,7 +37,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Cameras" id="yMo-3H-jD3">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ED-wl-gEr"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ED-wl-gEr">
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="K0Y-a3-2ft" kind="presentation" identifier="addcamerasegue" modalPresentationStyle="fullScreen" id="IpG-0Q-klW"/>
@@ -53,10 +53,10 @@
         <scene sceneID="pb7-wi-A04">
             <objects>
                 <collectionViewController title="Films" id="uPl-Gb-9LH" customClass="FilmViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="SJZ-aD-Tvt">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="SJZ-aD-Tvt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PMa-As-nWV">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -83,8 +83,9 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Films" id="KH0-Qe-LVd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FHx-YK-4OK">
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="S1S-OM-4gg" kind="presentation" identifier="addfilmsegue" modalPresentationStyle="pageSheet" id="7vi-C5-DsE"/>
+                                <segue destination="S1S-OM-4gg" kind="presentation" identifier="addfilmsegue" modalPresentationStyle="fullScreen" id="7vi-C5-DsE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -124,7 +125,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="pDj-ef-g84">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23137254900000001" green="0.20392156859999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xEr-HJ-HK3">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="46"/>
@@ -132,7 +133,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="njO-EP-L36" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photocell" id="njO-EP-L36" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="46" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -141,7 +142,7 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="fsa-4X-v3z">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="fsa-4X-v3z">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </collectionReusableView>
@@ -150,6 +151,7 @@
                             <outlet property="delegate" destination="bAh-5m-3E8" id="f2D-Sf-w4W"/>
                         </connections>
                     </collectionView>
+                    <navigationItem key="navigationItem" id="c6Z-XG-Ise"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVv-kK-QlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -159,19 +161,19 @@
         <scene sceneID="JBI-jC-kvw">
             <objects>
                 <collectionViewController id="FoM-UY-ZQA" customClass="PhotosViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Wvo-ua-GWU">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="Wvo-ua-GWU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RYY-qi-bd5">
                             <size key="itemSize" width="50" height="50"/>
-                            <size key="headerReferenceSize" width="50" height="46"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photocell" id="ZnH-dK-GPq" customClass="FilmCollectionViewCell" customModule="Film_Drawer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="46" width="50" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -179,10 +181,6 @@
                                 </view>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="c1b-OF-sCl" customClass="CollectionHeaderReusableView" customModule="Film_Drawer" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="FoM-UY-ZQA" id="7Da-jO-M0M"/>
                             <outlet property="delegate" destination="FoM-UY-ZQA" id="Zws-0X-CkB"/>
@@ -190,8 +188,9 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Photos" id="mPU-3y-rCm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMT-tj-jM9">
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="lhg-Bq-jCB" kind="presentation" modalPresentationStyle="fullScreen" id="0NX-9m-w3k"/>
+                                <segue destination="lhg-Bq-jCB" kind="presentation" identifier="addphotosegue" modalPresentationStyle="fullScreen" id="0NX-9m-w3k"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -204,10 +203,10 @@
         <scene sceneID="FwC-7s-5Gz">
             <objects>
                 <collectionViewController id="cOm-Cd-30f" customClass="ArchivesViewController" customModule="Film_Drawer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="z4z-2O-6ri">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="z4z-2O-6ri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Bd-ui-3rk">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -230,7 +229,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Archive Manager" id="a8n-V3-MGG">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="znR-g8-lgY"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="znR-g8-lgY">
+                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rnW-ZM-zkn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,12 +243,15 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOK-cz-5Hs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Ar-oa-uqo">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="2Ar-oa-uqo">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.22352941176470587" green="0.62745098039215685" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.22352941179999999" green="0.62745098040000002" blue="0.92941176469999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="hzE-8U-VqL" kind="relationship" relationship="viewControllers" id="aLj-z8-FNH"/>
                         <segue destination="0MA-aV-cua" kind="relationship" relationship="viewControllers" id="0xQ-S6-AcY"/>
@@ -265,11 +269,17 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wd5-A3-lhY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cameras" image="CameraIcon" id="GHx-7y-yE2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bd2-xU-heX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="bd2-xU-heX">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pJd-12-2zO">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="10f-bM-jFw" kind="relationship" relationship="rootViewController" id="eTg-NZ-Bls"/>
                     </connections>
@@ -284,11 +294,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0MA-aV-cua" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Films" image="FilmIcon" id="I2e-vw-zj7"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nai-2E-enM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Nai-2E-enM">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="uPl-Gb-9LH" kind="relationship" relationship="rootViewController" id="Loa-4H-4Jf"/>
                     </connections>
@@ -303,11 +316,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hzE-8U-VqL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Photos" image="PhotosIcon" id="Gpx-J9-gKb"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sWT-hL-eTg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="sWT-hL-eTg">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="FoM-UY-ZQA" kind="relationship" relationship="rootViewController" id="5d6-if-uY8"/>
                     </connections>
@@ -322,11 +338,14 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IWH-fX-rej" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Archives" image="ArchiveIcon" id="4S8-YH-CLC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tYe-Se-tht">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="tYe-Se-tht">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="cOm-Cd-30f" kind="relationship" relationship="rootViewController" id="oRr-yu-uWv"/>
                     </connections>

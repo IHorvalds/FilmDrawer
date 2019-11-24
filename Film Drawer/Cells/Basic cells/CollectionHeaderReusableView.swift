@@ -8,9 +8,10 @@
 
 import UIKit
 
-class CollectionHeaderReusableView: UICollectionReusableView {
+public class CollectionHeaderReusableView: UICollectionReusableView {
 
     @IBOutlet weak var filmNameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var backgroundBlurView: UIVisualEffectView!
     
 }

@@ -12,7 +12,7 @@ import Lottie
 class AnimatedLaunchViewController: UIViewController {
 
     @IBOutlet weak var animationView: AnimationView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,17 +21,17 @@ class AnimatedLaunchViewController: UIViewController {
         animationView.play(fromFrame: 0, toFrame: Animation.named("35-loader")!.endFrame/2, loopMode: .playOnce) { [weak self] (_) in
             self?.animationView.stop()
             let initVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UITabBarController
-            
+
             if  let window = UIApplication.shared.keyWindow,
                 let _ = window.rootViewController {
-                
+
                 UIView.transition(with: window,
                                   duration: 0.3,
                                   options: .transitionCrossDissolve,
                                   animations: {
                                     window.rootViewController = initVC
                 }, completion: nil)
-                
+
             } else {
                 UIApplication.shared.keyWindow?.rootViewController = initVC
             }

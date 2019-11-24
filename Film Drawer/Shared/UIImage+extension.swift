@@ -30,4 +30,15 @@ extension UIImage {
         return nil
     }
     
+    func rotateImage() -> UIImage? {
+        if (self.imageOrientation == UIImage.Orientation.up ) {
+            return self
+        }
+        UIGraphicsBeginImageContext(self.size)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: self.size))
+        let copy = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return copy
+    }
+    
 }

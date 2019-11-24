@@ -32,6 +32,7 @@ class EditCameraDetailTableVC: UITableViewController, UITextFieldDelegate {
         textField.keyboardType = keyboardType
         textField.placeholder = key.titlecased()
         textField.delegate = self
+        textField.becomeFirstResponder()
         navigationItem.title = key.titlecased()
     }
     

@@ -1,16 +1,26 @@
 PODS:
-  - lottie-ios (3.1.0)
+  - Hero (1.5.0)
+  - Kingfisher (5.10.0):
+    - Kingfisher/Core (= 5.10.0)
+  - Kingfisher/Core (5.10.0)
+  - lottie-ios (3.1.5)
 
 DEPENDENCIES:
+  - Hero
+  - Kingfisher (~> 5.0)
   - lottie-ios
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
+    - Hero
+    - Kingfisher
     - lottie-ios
 
 SPEC CHECKSUMS:
-  lottie-ios: 9467723922dfff46f6d4e3019c32594a62440b7c
+  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  Kingfisher: 0bf6eae7c2193f15719915fecb7c2c1c03855f3d
+  lottie-ios: 32bf84389337d86fbc8b12266e88452e0abf1dee
 
-PODFILE CHECKSUM: b917bdd38a08f93951b4384f1f5bef065fd69c30
+PODFILE CHECKSUM: 2d35767cd78eb7281cd7f85da1e53ef3c2b08dfb
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

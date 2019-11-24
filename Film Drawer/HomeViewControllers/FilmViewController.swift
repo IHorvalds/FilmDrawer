@@ -8,14 +8,15 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class FilmViewController: FetchedResultsCollectionViewController, UICollectionViewDelegateFlowLayout {
     
     //MARK: variables for data source
-    let serialQueue = DispatchQueue(label: "filmsvc decoding queue")
+//    let serialQueue = DispatchQueue(label: "filmsvc decoding queue")
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     var fetchedResultsController: NSFetchedResultsController<Film>?
-    var spacing: CGFloat = 0.05 * UIScreen.main.bounds.width //Cell width is 25.6% of screen width. This is the remainder.
+    var spacing: CGFloat = 16.0
 
     //MARK: Navigation accessories
     let searchController = UISearchController(searchResultsController: nil)
@@ -33,10 +34,10 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
         }
     }
     
-    private func updateUI(_ prediate: NSPredicate = NSPredicate(value: true)) {
+    public func updateUI(_ predicate: NSPredicate = NSPredicate(value: true)) {
         if let context = container?.viewContext {
             let fetchRequest: NSFetchRequest<Film> = Film.fetchRequest()
-            fetchRequest.predicate = prediate
+            fetchRequest.predicate = predicate
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdate", ascending: false)]
             
             fetchedResultsController = NSFetchedResultsController<Film>(fetchRequest: fetchRequest,
@@ -44,18 +45,25 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
                                                                         sectionNameKeyPath: nil,
                                                                         cacheName: nil)
             
-            do {
-                try fetchedResultsController?.performFetch()
-                collectionView.reloadSections(IndexSet(integer: 0))
-            } catch {
-                print("FilmViewController: line 33. Error performing fetch.\n")
-                print("\(error)")
+            fetchedResultsController?.delegate = self
+            
+            context.performAndWait {
+                do {
+                    try fetchedResultsController?.performFetch()
+                } catch {
+                    print("CameraViewController: line 51. Error performing fetch.\n")
+                    print("\(error)")
+                }
             }
+            collectionView.reloadSections(IndexSet(arrayLiteral: 0))
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        setupCollectionViewPersona()
+        
         
         isEditing = false
         updateUI()
@@ -64,10 +72,9 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchedResultsController?.delegate = self
-        
         //register the xib file for the film cell
-        collectionView.register(UINib(nibName: "FilmCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "filmcell")
+//        collectionView.register(UINib(nibName: "FilmCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "filmcell")
+        collectionView.register(UINib(nibName: "FilmCollectionViewCell2", bundle: nil), forCellWithReuseIdentifier: "filmcell")
         
         //add the search controller
         searchController.searchResultsUpdater = self
@@ -95,7 +102,7 @@ class FilmViewController: FetchedResultsCollectionViewController, UICollectionVi
         
         if  segue.identifier == "filmdetailsegue",
             let destVC = segue.destination as? BasePhotosCollectionViewController,
-            let sender = sender as? FilmCollectionViewCell,
+            let sender = sender as? FilmCollectionViewCell2,
             let index = collectionView.indexPath(for: sender),
             let film = fetchedResultsController?.object(at: index) {
             
@@ -113,6 +120,22 @@ extension FilmViewController {
     fileprivate func setupBarButtons() {
         doneDeletingButton = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(stopEditing(_:)))
         addFilmButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddFilmVC(_:)))
+        
+        doneDeletingButton.tintColor = .systemYellow
+        addFilmButton.tintColor = .systemYellow
+    }
+    
+    fileprivate func setupCollectionViewPersona() {
+        let backgroundView = UIView()
+        let image = UIImageView(image: #imageLiteral(resourceName: "LittleBat"))
+        image.contentMode = .scaleAspectFill
+        collectionView.backgroundView = backgroundView
+        backgroundView.addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
+        image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }
     
     @objc fileprivate func goToAddFilmVC(_ sender: UIBarButtonItem) {
@@ -132,9 +155,9 @@ extension FilmViewController {
     }
 }
 
-extension FilmViewController: FilmCellDelegate {
+extension FilmViewController: FilmCellDelegate2 {
     //MARK: FilmCellDelegate function
-    func didTapDeleteButton(cell: FilmCollectionViewCell) {
+    func didTapDeleteButton(cell: FilmCollectionViewCell2) {
         if  let index = collectionView.indexPath(for: cell),
             let film = fetchedResultsController?.object(at: index),
             let context = container?.viewContext {
@@ -161,10 +184,10 @@ extension FilmViewController: FilmCellDelegate {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filmcell", for: indexPath) as! FilmCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "filmcell", for: indexPath) as! FilmCollectionViewCell2
         
         guard let film = fetchedResultsController?.object(at: indexPath) else {
-            fatalError("Attempting to create cell without a film managed object. FilmViewController, line 64.")
+            fatalError("Attempting to create cell without a film managed object. FilmViewController, line 174.")
         }
         
         cell.isEditing = self.isEditing
@@ -174,61 +197,43 @@ extension FilmViewController: FilmCellDelegate {
         cell.addGestureRecognizer(lpGR)
         cell.isUserInteractionEnabled = true
         
-        cell.midImg.image = nil
         cell.backImg.image = nil
         
         let topImageSize = cell.topImg.bounds.size
-        let midImageSize = cell.midImg.bounds.size
-        let backImageSize = cell.backImg.bounds.size
         let imageScale = collectionView.traitCollection.displayScale
+       
         
         cell.layer.shouldRasterize = true
         cell.layer.rasterizationScale = imageScale
         
-        serialQueue.async {
-            if let film = self.fetchedResultsController?.object(at: indexPath) {
-                
-                let photos = film.getPhotos()
-                let topPicture = photos.last
-                let midPicture = (photos.count >= 2) ? photos[photos.count - 2] : nil
-                let backPicture = (photos.count >= 3) ? photos[photos.count - 3] : nil
-                
-                if  let topData = topPicture?.file,
-                    let downsampled = UIImage.downsample(imageWithData: topData, to: topImageSize, scale: imageScale) {
-                    DispatchQueue.main.async {
-                        cell.topImg.image = downsampled
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        cell.topImg.image = #imageLiteral(resourceName: "FilmOutline")
-                    }
-                }
-                
-                if  let midData = midPicture?.file,
-                    let downsampled = UIImage.downsample(imageWithData: midData, to: midImageSize, scale: imageScale) {
-                    DispatchQueue.main.async {
-                        cell.midImg.image = downsampled
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        cell.midImg.image = nil
-                    }
-                }
-                
-                if  let backData = backPicture?.file,
-                    let downsampled = UIImage.downsample(imageWithData: backData, to: backImageSize, scale: imageScale) {
-                    DispatchQueue.main.async {
-                        cell.backImg.image = downsampled
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        cell.backImg.image = nil
-                    }
-                }
-            }
+        if let name = film.name {
+            cell.setFilmNameLabel(film: name)
         }
         
-        cell.filmNameLabel.text = film.name
+        cell.setFrameCountLabel(currentFrameCount: film.getPhotosCount(), maxFrameCount: Int(film.numberOfFrames))
+        
+        if let lastShotDate = film.lastShotOn {
+            cell.setLastShotLabel(date: lastShotDate)
+        }
+        
+        for (index, imageView) in [cell.topImg, cell.backImg].enumerated() {
+            if  let photo = film.getPhoto(number: Int16(index)),
+                let url = photo.file {
+                
+                let provider = LocalFileImageDataProvider(fileURL: url)
+                let processor = DownsamplingImageProcessor(size: topImageSize) |> RoundCornerImageProcessor(cornerRadius: 5.0)
+                imageView?.kf.indicatorType = .activity
+                imageView?.kf.setImage(with: provider,
+                                        placeholder: nil,
+                                        options: [
+                    .processor(processor),
+                    .scaleFactor(imageScale),
+                    .cacheOriginalImage
+                ], completionHandler: nil)
+            } else {
+                imageView?.image = #imageLiteral(resourceName: "FilmOutline")
+            }
+        }
         
         return cell
     }
@@ -242,7 +247,7 @@ extension FilmViewController: FilmCellDelegate {
 //        filmDetailVC.film = fetchedResultsController?.object(at: indexPath)
 //        navigationController?.pushViewController(filmDetailVC, animated: true)
         
-        performSegue(withIdentifier: "filmdetailsegue", sender: collectionView.cellForItem(at: indexPath) as! FilmCollectionViewCell)
+        performSegue(withIdentifier: "filmdetailsegue", sender: collectionView.cellForItem(at: indexPath) as! FilmCollectionViewCell2)
     }
 }
 
@@ -250,9 +255,9 @@ extension FilmViewController: FilmCellDelegate {
 extension FilmViewController { //MARK: Collection View Flow Layout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let deviceWidth = UIScreen.main.bounds.width
-        let heightToWidthRatio: CGFloat = 1.5 //from design
+//        let heightToWidthRatio: CGFloat = 1.5 //from design
         
-        return CGSize(width: deviceWidth * 0.256, height: deviceWidth * 0.256 * heightToWidthRatio)
+        return CGSize(width: deviceWidth - 2 * spacing, height: 120)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -260,7 +265,8 @@ extension FilmViewController { //MARK: Collection View Flow Layout
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return spacing
+//        return spacing
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -20,6 +20,26 @@ class CameraPictureCell: UITableViewCell {
         super.awakeFromNib()
         
         galleryButton.imageView?.contentMode = .scaleAspectFit
+        captureButton.addTarget(self, action: #selector(animateButtonTap), for: .touchUpInside)
+    }
+    
+    @objc func animateButtonTap() {
+        UIView.animateKeyframes(withDuration: 0.2,
+                                delay: 0,
+                                options: [.calculationModeLinear],
+                                animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0.0,
+                                                       relativeDuration: 1/2) { [weak self] in
+                                                        guard let self = self else { return }
+                                                        self.captureButton.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+                                    }
+                                    
+                                    UIView.addKeyframe(withRelativeStartTime: 1/2,
+                                                       relativeDuration: 1/2) { [weak self] in
+                                                        guard let self = self else { return }
+                                                        self.captureButton.transform = .identity
+                                    }
+        }, completion: nil)
     }
 
 }

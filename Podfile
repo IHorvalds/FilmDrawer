@@ -5,6 +5,8 @@ target 'Film Drawer' do
   use_frameworks!
 
   pod 'lottie-ios'
-
+  pod 'Kingfisher', '~> 5.0'
+  pod 'Hero'
+  
 end
 

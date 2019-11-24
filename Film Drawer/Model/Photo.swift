@@ -76,17 +76,8 @@ public class Photo: NSManagedObject {
         }
     }
     
-    func getUIImage() -> UIImage? {
-        if  let data = self.file,
-            let image = UIImage(data: data) {
-            return image
-        } else {
-            return nil
-        }
-    }
-    
     func addIDIfcompleteEnough() -> Bool {
-        if  let _ = self.getUIImage(),
+        if  let _ = self.file,
             self.belongsTo != nil {
             
             self.id = UUID()

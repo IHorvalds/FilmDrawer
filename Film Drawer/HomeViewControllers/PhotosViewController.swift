@@ -19,42 +19,34 @@ class PhotosViewController: BasePhotosCollectionViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search cameras"
+        searchController.searchBar.placeholder = "Search photos"
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = true
+        navigationItem.hidesSearchBarWhenScrolling = false
         definesPresentationContext = true
         
         setupBarButtons()
-
-        
-        collectionView.register(UINib(nibName: "CollectionHeaderReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "header")
         
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader,
                                                                      withReuseIdentifier: "header", for: indexPath) as! CollectionHeaderReusableView
-        
+
         let sectionInfo = fetchedResultsController?.sections?[indexPath.section]
         let photo = sectionInfo?.objects?[0] as! Photo
-        let firstPhoto = photo.belongsTo?.containsPictures?.firstObject as? Photo
-        let lastPhoto = photo.belongsTo?.containsPictures?.lastObject as? Photo
-        
+//        let firstPhoto = photo.belongsTo?.containsPictures?.firstObject as? Photo
+//        let lastPhoto = photo.belongsTo?.containsPictures?.lastObject as? Photo
+
         var headerTitle = photo.belongsTo?.name
         if  let cameraName = photo.belongsTo?.shotOn?.name,
             let filmName = headerTitle {
-            
+
             headerTitle = filmName + " • " + cameraName
         }
-        
+
         header.filmNameLabel.text = headerTitle
-        
-        if let fP = firstPhoto, let lP = lastPhoto {
-            header.dateLabel.text = "\(fP.dateTaken)-\(lP.dateTaken)"
-        } else {
-            header.dateLabel.text = nil
-        }
-        
+
         return header
     }
 
@@ -62,7 +54,8 @@ class PhotosViewController: BasePhotosCollectionViewController {
 
 extension PhotosViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
+//        print(searchController.searchBar.text)
+        print("update the fetched results controller's query so that the text in here matches at least partially the tags")
     }
     
     

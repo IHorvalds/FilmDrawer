@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Kingfisher
 
 class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
     
@@ -96,7 +97,21 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
         }
         
         cell = tableView.dequeueReusableCell(withIdentifier: "selectcamera")!
-        cell.imageView?.image = cellCamera.getUIImage() ?? #imageLiteral(resourceName: "CameraIcon")
+//        cell.imageView?.image = cellCamera.getUIImage() ?? #imageLiteral(resourceName: "CameraIcon")
+        if  let url = cellCamera.photo,
+            let size = cell.imageView?.bounds.size {
+            
+            let scale = cell.traitCollection.displayScale
+            let provider = LocalFileImageDataProvider(fileURL: url)
+            let processor = DownsamplingImageProcessor(size: size)
+            cell.imageView?.kf.setImage(with: provider,
+                                        placeholder: #imageLiteral(resourceName: "CameraIcon"),
+                                        options: [
+                .processor(processor),
+                .scaleFactor(scale)])
+        } else {
+            cell.imageView?.image = #imageLiteral(resourceName: "CameraIcon")
+        }
         cell.textLabel?.text = cellCamera.name
         
         if let date = cellCamera.dateAdded {

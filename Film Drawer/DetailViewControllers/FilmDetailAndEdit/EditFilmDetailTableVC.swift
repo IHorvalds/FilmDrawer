@@ -25,6 +25,7 @@ class EditFilmDetailTableVC: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         textFieldOutlet.delegate = self
+        textFieldOutlet.becomeFirstResponder()
         
         if let property = filmProperty {
             var title = String()

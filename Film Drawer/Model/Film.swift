@@ -29,6 +29,16 @@ public class Film: NSManagedObject {
         return false
     }
     
+    func isCompleteEnough() -> Bool {
+        if  !(self.name?.isEmpty ?? true),
+            self.iso     != 0 {
+            
+            return true
+        }
+        
+        return false
+    }
+    
     ///Method returns true and gives it an ID if the instance has a name and an iso value different than 0. After this, isComplete() will return true.
     ///If the instance doesn't have a name or the iso is yet unset, it doesn't set an ID and returns false.
     func addIdIfCompleteEnough() -> Bool {
@@ -90,7 +100,7 @@ public class Film: NSManagedObject {
     
     func getPhoto(number: Int16) -> Photo? {
         let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "belongsTo = %@ && positionInFilm = %@", self, number)
+        fetchRequest.predicate = NSPredicate(format: "belongsTo = %@ && positionInFilm = %d", self, number)
         
         do {
             if let photos = try self.managedObjectContext?.fetch(fetchRequest) {
@@ -107,6 +117,10 @@ public class Film: NSManagedObject {
             return nil
         }
         
+    }
+    
+    func getPhotosCount() -> Int {
+        return self.containsPictures?.count ?? 0
     }
     
     class func getFilms(by attribute: Attribute, value: Any, in context: NSManagedObjectContext) throws -> [Film] {

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,35 +14,61 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzh-Hg-wwt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="h9T-QQ-Ug8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gU9-c4-mBT">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="AHt-Sq-wDe">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                    </view>
+                    <blurEffect style="light"/>
+                </visualEffectView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="G86-1Z-j6n">
-                    <rect key="frame" x="16" y="0.0" width="288" height="50"/>
+                    <rect key="frame" x="16" y="0.5" width="288" height="45"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glR-o5-RgV">
-                            <rect key="frame" x="0.0" y="0.0" width="288" height="33"/>
+                            <rect key="frame" x="0.0" y="0.0" width="288" height="28"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EyJ-Fj-g35">
-                            <rect key="frame" x="0.0" y="33" width="288" height="17"/>
+                            <rect key="frame" x="0.0" y="28" width="288" height="17"/>
                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
-                            <color key="textColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="G86-1Z-j6n" firstAttribute="height" secondItem="U6b-Vx-4bR" secondAttribute="height" id="1wt-XL-iAh"/>
-                <constraint firstItem="G86-1Z-j6n" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="LFZ-Qk-pPa"/>
-                <constraint firstItem="G86-1Z-j6n" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="16" id="W2J-sF-3j8"/>
+                <constraint firstItem="G86-1Z-j6n" firstAttribute="height" secondItem="nzh-Hg-wwt" secondAttribute="height" constant="-5" id="1wt-XL-iAh"/>
+                <constraint firstItem="nzh-Hg-wwt" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="Dca-rF-GUt"/>
+                <constraint firstItem="G86-1Z-j6n" firstAttribute="centerY" secondItem="nzh-Hg-wwt" secondAttribute="centerY" constant="-2" id="LFZ-Qk-pPa"/>
+                <constraint firstItem="nzh-Hg-wwt" firstAttribute="height" secondItem="U6b-Vx-4bR" secondAttribute="height" id="Sht-Zv-Jy4"/>
+                <constraint firstItem="G86-1Z-j6n" firstAttribute="leading" secondItem="nzh-Hg-wwt" secondAttribute="leading" constant="16" id="W2J-sF-3j8"/>
                 <constraint firstItem="G86-1Z-j6n" firstAttribute="trailing" secondItem="VXr-Tz-HHm" secondAttribute="trailing" constant="-16" id="aYf-Ds-6Ix"/>
+                <constraint firstItem="nzh-Hg-wwt" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="kAj-Kh-hIM"/>
+                <constraint firstItem="nzh-Hg-wwt" firstAttribute="width" secondItem="U6b-Vx-4bR" secondAttribute="width" id="mIt-LG-2DT"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
+                <outlet property="backgroundBlurView" destination="nzh-Hg-wwt" id="K0r-K6-jfu"/>
                 <outlet property="dateLabel" destination="EyJ-Fj-g35" id="5zN-PM-Ov0"/>
                 <outlet property="filmNameLabel" destination="glR-o5-RgV" id="7Kz-eh-5da"/>
             </connections>
+            <point key="canvasLocation" x="139" y="142"/>
         </collectionReusableView>
     </objects>
 </document>

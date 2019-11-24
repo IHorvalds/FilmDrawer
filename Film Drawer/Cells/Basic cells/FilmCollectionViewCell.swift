@@ -38,16 +38,18 @@ class FilmCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var midToBackConstraint: NSLayoutConstraint!
     
     fileprivate func setupConstraints() {
-        let heightPercentage: CGFloat = 0.10
+        let heightPercentage: CGFloat = 0.11
+        
+        print(topImg.frame.height * 0.26)
         
         topToMidConstraint.constant = topImg.frame.height * heightPercentage
-        
-        midToBackConstraint.constant = topImg.frame.height * heightPercentage
+
+        midToBackConstraint.constant = topImg.frame.height * 0.23
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupConstraints()
+//        setupConstraints()
         
         deleteButton.isHidden = !isEditing
         deleteButton.tintColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
@@ -63,10 +65,14 @@ class FilmCollectionViewCell: UICollectionViewCell {
         //shadow:
         //black, 50% alpha, X: 0, Y: 2, radius: 4
         if imageView == topImg {
+            background.layer.cornerRadius = 4
+            background.clipsToBounds = false
             background.layer.shadowColor = UIColor.black.cgColor
             background.layer.shadowOffset = CGSize(width: 0, height: 2)
             background.layer.shadowOpacity = 0.8
             background.layer.shadowRadius = 7
+            
+            imageView.layer.cornerRadius = 4
         } else {
             //setup shadow view
             let shadowView = UIView(frame: imageView.frame)
@@ -78,16 +84,21 @@ class FilmCollectionViewCell: UICollectionViewCell {
             shadowView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor).isActive = true
             shadowView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
             
+            
+            shadowView.layer.cornerRadius = 3
             shadowView.backgroundColor = .white
             shadowView.clipsToBounds = false
             shadowView.layer.shadowColor = UIColor.darkGray.cgColor
             shadowView.layer.shadowOffset = CGSize(width: 0, height: 2)
             shadowView.layer.shadowOpacity = 0.8
             shadowView.layer.shadowRadius = 4
+            
+            imageView.layer.cornerRadius = 3
         }
     }
     
     func startAnimating() {
+        let shadowViews = self.subviews[0...1]
         UIView.animateKeyframes(withDuration: 0.3,
                                 delay: TimeInterval.random(in: 0.0...0.3),
                                 options: [.calculationModeLinear, .repeat, .autoreverse],
@@ -105,6 +116,10 @@ class FilmCollectionViewCell: UICollectionViewCell {
                                                         self?.background.transform = transform
                                                         self?.midImg.transform = transform
                                                         self?.backImg.transform = transform
+                                                        
+                                                        _ = shadowViews.map({ (view) -> Void in
+                                                            view.transform = transform
+                                                        })
                                     })
                                     UIView.addKeyframe(withRelativeStartTime: 1/2,
                                                        relativeDuration: 1/2,
@@ -116,16 +131,26 @@ class FilmCollectionViewCell: UICollectionViewCell {
                                                         self?.background.transform = transform
                                                         self?.midImg.transform = transform
                                                         self?.backImg.transform = transform
+                                                        
+                                                        _ = shadowViews.map({ (view) -> Void in
+                                                            view.transform = transform
+                                                        })
                                     })
         }, completion: nil)
     }
     
     func stopAnimating() {
+        let shadowViews = self.subviews[0...1]
+        
         UIView.animate(withDuration: 0.2) { [weak self] in
             self?.topImg.transform = .identity
             self?.background.transform = .identity
             self?.midImg.transform = .identity
             self?.backImg.transform = .identity
+            
+            _ = shadowViews.map({ (view) -> Void in
+                view.transform = .identity
+            })
         }
     }
     
