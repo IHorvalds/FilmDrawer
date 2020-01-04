@@ -1,38 +1,27 @@
 //
-//  SelectCameraTableVC.swift
+//  SelectFilmTableVC.swift
 //  Film Drawer
 //
-//  Created by Tudor Croitoru on 25/08/2019.
-//  Copyright © 2019 Tudor Croitoru. All rights reserved.
+//  Created by Tudor Croitoru on 04/01/2020.
+//  Copyright © 2020 Tudor Croitoru. All rights reserved.
 //
 
 import UIKit
 import CoreData
-import Kingfisher
 
-class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDelegate {
+class SelectFilmTableVC: UITableViewController {
     
-    var fetchedResultsController: NSFetchedResultsController<Camera>?
+    var fetchedResultsController: NSFetchedResultsController<Film>?
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-    var film: Film?
-    var selectedCamera: Camera?
-    
-    @IBAction func doneButton(_ sender: UIBarButtonItem) {
-        
-        film?.shotOn = selectedCamera
-        if let film = film {
-            selectedCamera?.addToFilmsShot(film)
-        }
-        navigationController?.popViewController(animated: true)
-        
-    }
+    var photo: Photo?
+    var selectedFilm: Film?
     
     private func updateUI() {
         if let context = container?.viewContext {
-            let fetchRequest: NSFetchRequest<Camera> = Camera.fetchRequest()
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "dateAdded", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
+            let fetchRequest: NSFetchRequest<Film> = Film.fetchRequest()
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "lastUpdate", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
             
-            fetchedResultsController = NSFetchedResultsController<Camera>(fetchRequest: fetchRequest,
+            fetchedResultsController = NSFetchedResultsController<Film>(fetchRequest: fetchRequest,
                                                                         managedObjectContext: context,
                                                                         sectionNameKeyPath: nil,
                                                                         cacheName: nil)
@@ -41,7 +30,7 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
                 try fetchedResultsController?.performFetch()
                 tableView.reloadData()
             } catch {
-                print("SelectCameraTableVC: line 40. Error performing fetch.\n")
+                print("SelectFilmTableVC: line 33. Error performing fetch.\n")
                 print("\(error)")
             }
         }
@@ -51,23 +40,12 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
         super.viewWillAppear(animated)
         
         updateUI()
-        if  let camera = selectedCamera,
+        if  let camera = selectedFilm,
             let index = fetchedResultsController?.indexPath(forObject: camera) {
             
             tableView.cellForRow(at: index)!.accessoryType = .checkmark
             tableView.selectRow(at: index, animated: false, scrollPosition: .top)
-            
         }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        film?.shotOn = selectedCamera
-        if let film = film {
-            selectedCamera?.addToFilmsShot(film)
-        }
-        
     }
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -89,37 +67,23 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
             return 0
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         
-        guard let cellCamera = fetchedResultsController?.object(at: indexPath) else {
-            fatalError("Trying to display cell without a camera at its indexPath.")
+        guard let cellFilm = fetchedResultsController?.object(at: indexPath) else {
+            fatalError("Trying to display cell without a film at its indexPath.")
         }
         
-        cell = tableView.dequeueReusableCell(withIdentifier: "selectcamera")!
-        if  let imageName = cellCamera.photo,
-            let url = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName),
-            let size = cell.imageView?.bounds.size {
-            
-            let scale = cell.traitCollection.displayScale
-            let provider = LocalFileImageDataProvider(fileURL: url)
-            let processor = DownsamplingImageProcessor(size: size) |> RoundCornerImageProcessor(cornerRadius: 2.0)
-            cell.imageView?.kf.setImage(with: provider,
-                                        placeholder: #imageLiteral(resourceName: "CameraIcon"),
-                                        options: [
-                .processor(processor),
-                .scaleFactor(scale)])
-        } else {
-            cell.imageView?.image = #imageLiteral(resourceName: "CameraIcon")
-        }
-        cell.textLabel?.text = cellCamera.name
+        cell = tableView.dequeueReusableCell(withIdentifier: "selectfilm")!
         
-        if let date = cellCamera.dateAdded {
+        cell.textLabel?.text = cellFilm.name
+        
+        if let date = cellFilm.lastUpdate {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             let dateString = dateFormatter.string(from: date)
-            cell.detailTextLabel?.text = "Added on \(dateString)"
+            cell.detailTextLabel?.text = "Last updated on \(dateString)"
         }
         
         
@@ -128,12 +92,12 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)!
-        if selectedCamera == fetchedResultsController?.object(at: indexPath) {
-            selectedCamera = nil
+        if selectedFilm == fetchedResultsController?.object(at: indexPath) {
+            selectedFilm = nil
             cell.accessoryType = .none
             tableView.deselectRow(at: indexPath, animated: true)
         } else {
-            selectedCamera = fetchedResultsController?.object(at: indexPath)
+            selectedFilm = fetchedResultsController?.object(at: indexPath)
             cell.accessoryType = .checkmark
         }
     }
@@ -142,4 +106,5 @@ class SelectCameraTableVC: UITableViewController, NSFetchedResultsControllerDele
         let cell = tableView.cellForRow(at: indexPath)!
         cell.accessoryType = .none
     }
+
 }

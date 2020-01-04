@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,19 +24,45 @@
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3La-Qi-3eX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="213"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-F0-BkF" customClass="RoundedButton" customModule="Film_Drawer" customModuleProvider="target">
+                                <rect key="frame" x="15" y="20" width="144.5" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="EeG-F0-BkF" secondAttribute="height" multiplier="140:31" id="aqK-5U-xEK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-9" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="New Image" image="AddPictureIcon">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="backCol">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EeG-F0-BkF" firstAttribute="top" secondItem="3La-Qi-3eX" secondAttribute="top" constant="20" symbolic="YES" id="QEv-LW-KnD"/>
+                        </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="GAF-sx-aPn">
-                        <rect key="frame" x="15" y="147" width="290" height="56"/>
+                        <rect key="frame" x="15" y="91" width="290" height="112"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xv9-jC-ydV" customClass="RoundedButton" customModule="Film_Drawer" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="13" width="96" height="30"/>
+                                <rect key="frame" x="0.0" y="40" width="71.5" height="32"/>
                                 <state key="normal" title="Preview">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="backCol">
-                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="value" name="AccentColor"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="5"/>
@@ -43,13 +70,13 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-eo-EIa">
-                                <rect key="frame" x="104" y="0.0" width="82" height="56"/>
-                                <color key="tintColor" red="0.23921568630000001" green="0.23921568630000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="79.5" y="0.0" width="131" height="112"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="-11" minY="-11" maxX="-11" maxY="-11"/>
                                 <state key="normal" image="PictureButton"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vxs-or-bpd" customClass="RoundedButton" customModule="Film_Drawer" customModuleProvider="target">
-                                <rect key="frame" x="194" y="13" width="96" height="30"/>
+                                <rect key="frame" x="218.5" y="40" width="71.5" height="32"/>
                                 <state key="normal" title="Choose">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -72,12 +99,14 @@
                 <constraints>
                     <constraint firstItem="3La-Qi-3eX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2ev-Gb-km1"/>
                     <constraint firstItem="6d4-8r-CVy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="6db-5K-kBv"/>
+                    <constraint firstItem="EeG-F0-BkF" firstAttribute="height" secondItem="xv9-jC-ydV" secondAttribute="height" id="81N-5u-gGL"/>
                     <constraint firstItem="6d4-8r-CVy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8d5-5A-kv6"/>
                     <constraint firstItem="6d4-8r-CVy" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="Bdf-1p-ziA"/>
                     <constraint firstItem="3La-Qi-3eX" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="RMd-AR-ezx"/>
                     <constraint firstItem="3La-Qi-3eX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" id="ZVW-Dy-Hj5"/>
                     <constraint firstItem="3La-Qi-3eX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="by1-Cg-mOd"/>
                     <constraint firstItem="6d4-8r-CVy" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" id="p3S-oY-pSt"/>
+                    <constraint firstItem="xv9-jC-ydV" firstAttribute="leading" secondItem="EeG-F0-BkF" secondAttribute="leading" id="zD6-xJ-v8X"/>
                 </constraints>
             </tableViewCellContentView>
             <constraints>
@@ -88,6 +117,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="choosePhotoButton" destination="vxs-or-bpd" id="a6A-Dq-Vzu"/>
+                <outlet property="newImageButton" destination="EeG-F0-BkF" id="zgG-lQ-DZ9"/>
                 <outlet property="pictureView" destination="6d4-8r-CVy" id="ihh-VF-5qb"/>
                 <outlet property="previewButton" destination="xv9-jC-ydV" id="vuu-3v-iNn"/>
                 <outlet property="previewView" destination="3La-Qi-3eX" id="NtW-WI-dCf"/>
@@ -97,6 +127,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="AddPictureIcon" width="20" height="16"/>
         <image name="PictureButton" width="56" height="56"/>
+        <namedColor name="AccentColor">
+            <color red="0.14100000262260437" green="0.39599999785423279" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

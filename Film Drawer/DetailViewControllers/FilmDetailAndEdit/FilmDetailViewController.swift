@@ -52,6 +52,8 @@ class FilmDetailViewController: UITableViewController {
                 alert.addAction(.init(title: "Dismiss", style: .default, handler: { [weak self] (_) in
                     self?.dismiss(animated: true, completion: nil)
                 }))
+                alert.view.tintColor = UIColor(named: "AccentColor")
+                present(alert, animated: true)
             }
             
         } else {
@@ -186,20 +188,20 @@ extension FilmDetailViewController { //MARK: Display
                     if ["", nil].contains(cell.detailTextLabel?.text) {
                         cell.accessoryType = .disclosureIndicator
                     }
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 } else {
                     cell = tableView.dequeueReusableCell(withIdentifier: "textcell")!
                     cell.accessoryType = .disclosureIndicator
                     cell.textLabel?.text = "Camera"
                     cell.detailTextLabel?.text = film?.shotOn?.name ?? "Choose"
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 }
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "textcell")!
                 cell.accessoryType = .disclosureIndicator
                 cell.textLabel?.text = "Camera"
                 cell.detailTextLabel?.text = film?.shotOn?.name ?? "Choose"
-                cell.detailTextLabel?.textColor = secondaryLabelColor
+                cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
             }
             
             
@@ -211,7 +213,7 @@ extension FilmDetailViewController { //MARK: Display
                 let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
                 cell.accessoryView = imageView
                 imageView.image = (film?.developed ?? false) ? #imageLiteral(resourceName: "􀁣CheckMark") : #imageLiteral(resourceName: "exit")
-                (cell.accessoryView as! UIImageView).tintColor = (film?.developed ?? false) ? UIColor.green : secondaryLabelColor
+                (cell.accessoryView as! UIImageView).tintColor = (film?.developed ?? false) ? UIColor.green : #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
             } else {
                 cell = tableView.dequeueReusableCell(withIdentifier: "checkedcell")!
                 cell.textLabel?.text = "Scanned"
@@ -219,7 +221,7 @@ extension FilmDetailViewController { //MARK: Display
                 let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
                 cell.accessoryView = imageView
                 imageView.image = (film?.scanned ?? false) ? #imageLiteral(resourceName: "􀁣CheckMark") : #imageLiteral(resourceName: "exit")
-                (cell.accessoryView as! UIImageView).tintColor = (film?.scanned ?? false) ? UIColor.green : secondaryLabelColor
+                (cell.accessoryView as! UIImageView).tintColor = (film?.scanned ?? false) ? UIColor.green : #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
             }
             
             
@@ -236,14 +238,14 @@ extension FilmDetailViewController { //MARK: Display
                 let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
                 cell.accessoryView = imageView
                 imageView.image = (film?.colour ?? false) ? #imageLiteral(resourceName: "􀁣CheckMark") : #imageLiteral(resourceName: "exit")
-                (cell.accessoryView as! UIImageView).tintColor = (film?.colour ?? false) ? UIColor.green : secondaryLabelColor
+                (cell.accessoryView as! UIImageView).tintColor = (film?.colour ?? false) ? UIColor.green : #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
             case 1:
 //                print("iso")
                 cell = tableView.dequeueReusableCell(withIdentifier: "textcell")!
                 cell.textLabel?.text = "ISO"
                 cell.accessoryType = (film?.iso == nil || film?.iso == 0) ? .disclosureIndicator : .none
                 cell.detailTextLabel?.text = (film?.iso == nil || film?.iso == 0) ? "" : String(film!.iso)
-                cell.detailTextLabel?.textColor = secondaryLabelColor
+                cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 
             case 2:
 //                print("push/pull")
@@ -253,7 +255,7 @@ extension FilmDetailViewController { //MARK: Display
                 let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
                 cell.accessoryView = imageView
                 imageView.image = (film?.pushOrPull ?? false) ? #imageLiteral(resourceName: "􀁣CheckMark") : #imageLiteral(resourceName: "exit")
-                (cell.accessoryView as! UIImageView).tintColor = (film?.pushOrPull ?? false) ? UIColor.green : secondaryLabelColor
+                (cell.accessoryView as! UIImageView).tintColor = (film?.pushOrPull ?? false) ? UIColor.green : #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 
             case 3:
                 if (film?.pushOrPull ?? false) {
@@ -262,14 +264,14 @@ extension FilmDetailViewController { //MARK: Display
                     cell.textLabel?.text = "Shot at ISO"
                     cell.accessoryType = ( film?.isoDevelopedAt == nil || film?.isoDevelopedAt == 0 ) ? .disclosureIndicator : .none
                     cell.detailTextLabel?.text = (film?.isoDevelopedAt == nil || film?.isoDevelopedAt == 0) ? "" : String(film!.isoDevelopedAt)
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 } else {
 //                    print("number of frames")
                     cell = tableView.dequeueReusableCell(withIdentifier: "textcell")!
                     cell.textLabel?.text = "Number of frames"
                     cell.accessoryType = (film?.numberOfFrames == nil || film?.numberOfFrames == 0) ? .disclosureIndicator : .none
                     cell.detailTextLabel?.text = (film?.numberOfFrames == nil || film?.numberOfFrames == 0) ? "" : String(film!.numberOfFrames)
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 }
             case 4:
                 if (film?.pushOrPull ?? false) {
@@ -278,14 +280,14 @@ extension FilmDetailViewController { //MARK: Display
                     cell.textLabel?.text = "Number of frames"
                     cell.accessoryType = (film?.numberOfFrames == nil || film?.numberOfFrames == 0) ? .disclosureIndicator : .none
                     cell.detailTextLabel?.text = (film?.numberOfFrames == nil || film?.numberOfFrames == 0) ? "" : String(film!.numberOfFrames)
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 } else {
 //                    print("width")
                     cell = tableView.dequeueReusableCell(withIdentifier: "textcell")!
                     cell.textLabel?.text = "Width"
                     cell.accessoryType = (film?.width == nil || film?.width == 0) ? .disclosureIndicator : .none
                     cell.detailTextLabel?.text = (film?.width == nil || film?.width == 0) ? "" : (String(film!.width) + "mm")
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 }
             case 5:
                 if (film?.pushOrPull ?? false) {
@@ -294,7 +296,7 @@ extension FilmDetailViewController { //MARK: Display
                     cell.textLabel?.text = "Width"
                     cell.accessoryType = (film?.width == nil || film?.width == 0) ? .disclosureIndicator : .none
                     cell.detailTextLabel?.text = (film?.width == nil || film?.width == 0) ? "" : (String(film!.width) + "mm")
-                    cell.detailTextLabel?.textColor = secondaryLabelColor
+                    cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
                 }
             default:
                 break
@@ -307,7 +309,7 @@ extension FilmDetailViewController { //MARK: Display
             let imageView = UIImageView(frame: CGRect(origin: .zero, size: CGSize(width: 20, height: 20)))
             cell.accessoryView = imageView
             imageView.image = (film?.expired ?? false) ? #imageLiteral(resourceName: "􀁣CheckMark") : #imageLiteral(resourceName: "exit")
-            (cell.accessoryView as! UIImageView).tintColor = (film?.expired ?? false) ? UIColor.green : secondaryLabelColor
+            (cell.accessoryView as! UIImageView).tintColor = (film?.expired ?? false) ? UIColor.green : #colorLiteral(red: 0.4235294118, green: 0.4235294118, blue: 0.4235294118, alpha: 1)
             
             
         default:

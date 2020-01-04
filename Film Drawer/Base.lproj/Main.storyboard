@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WOK-cz-5Hs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WOK-cz-5Hs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,7 +15,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="DRx-Yt-1VT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ri9-W5-r5l">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -38,7 +39,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Cameras" id="yMo-3H-jD3">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0ED-wl-gEr">
-                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="AccentColor"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -56,7 +57,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="SJZ-aD-Tvt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PMa-As-nWV">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -83,7 +84,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Films" id="KH0-Qe-LVd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="FHx-YK-4OK">
-                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="AccentColor"/>
                             <connections>
                                 <segue destination="S1S-OM-4gg" kind="presentation" identifier="addfilmsegue" modalPresentationStyle="fullScreen" id="7vi-C5-DsE"/>
                             </connections>
@@ -108,7 +109,7 @@
                 <viewControllerPlaceholder storyboardName="FilmDetail" id="S1S-OM-4gg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wQV-fh-Onm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-160" y="1477"/>
+            <point key="canvasLocation" x="-199" y="1477"/>
         </scene>
         <!--PhotoDetail-->
         <scene sceneID="LY5-ln-LIw">
@@ -125,7 +126,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="pDj-ef-g84">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.23137254900000001" green="0.20392156859999999" blue="0.23921568630000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xEr-HJ-HK3">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="50" height="46"/>
@@ -155,7 +156,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVv-kK-QlN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="1905"/>
+            <point key="canvasLocation" x="35" y="1908"/>
         </scene>
         <!--Photos-->
         <scene sceneID="JBI-jC-kvw">
@@ -164,7 +165,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" prefetchingEnabled="NO" id="Wvo-ua-GWU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RYY-qi-bd5">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -188,7 +189,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Photos" id="mPU-3y-rCm">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lMT-tj-jM9">
-                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="AccentColor"/>
                             <connections>
                                 <segue destination="lhg-Bq-jCB" kind="presentation" identifier="addphotosegue" modalPresentationStyle="fullScreen" id="0NX-9m-w3k"/>
                             </connections>
@@ -206,7 +207,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" id="z4z-2O-6ri">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.23137254901960785" green="0.20392156862745098" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Background Color"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4Bd-ui-3rk">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -230,7 +231,7 @@
                     </collectionView>
                     <navigationItem key="navigationItem" title="Archive Manager" id="a8n-V3-MGG">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="znR-g8-lgY">
-                            <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" name="AccentColor"/>
                         </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
@@ -243,11 +244,11 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WOK-cz-5Hs" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="2Ar-oa-uqo">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Ar-oa-uqo">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.22352941176470587" green="0.62745098039215685" blue="0.92941176470588238" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" name="AccentColor"/>
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -269,7 +270,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wd5-A3-lhY" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Cameras" image="CameraIcon" id="GHx-7y-yE2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="bd2-xU-heX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="bd2-xU-heX">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -294,7 +295,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="0MA-aV-cua" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Films" image="FilmIcon" id="I2e-vw-zj7"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Nai-2E-enM">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Nai-2E-enM">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -316,7 +317,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hzE-8U-VqL" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Photos" image="PhotosIcon" id="Gpx-J9-gKb"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="sWT-hL-eTg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="sWT-hL-eTg">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -338,7 +339,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IWH-fX-rej" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Archives" image="ArchiveIcon" id="4S8-YH-CLC"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="tYe-Se-tht">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="tYe-Se-tht">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -360,5 +361,11 @@
         <image name="CameraIcon" width="27" height="22"/>
         <image name="FilmIcon" width="27" height="22"/>
         <image name="PhotosIcon" width="23" height="24"/>
+        <namedColor name="AccentColor">
+            <color red="0.14100000262260437" green="0.39599999785423279" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="Background Color">
+            <color red="0.93300002813339233" green="0.93300002813339233" blue="0.93300002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

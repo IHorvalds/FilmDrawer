@@ -27,12 +27,6 @@ class CameraDetailViewController: UITableViewController {
     var doneButton = UIBarButtonItem()
     var cancelButton = UIBarButtonItem()
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tableView.reloadData()
-    }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +48,24 @@ class CameraDetailViewController: UITableViewController {
         }
         
         navigationItem.rightBarButtonItem = doneButton
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(updateTableView),
+                                       name: Notification.Name.NSManagedObjectContextObjectsDidChange,
+                                       object: container?.viewContext)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 
 extension CameraDetailViewController { //Helper functions
+    
+    @objc fileprivate func updateTableView() {
+        tableView.reloadData()
+        navigationController?.title = camera?.name
+    }
     
     @objc fileprivate func cancelButtonPressed(_ sender: UIBarButtonItem) {
         if  isAddingNewCamera,
@@ -82,6 +90,8 @@ extension CameraDetailViewController { //Helper functions
                 alert.addAction(.init(title: "Dismiss", style: .default, handler: { [weak self] (_) in
                     self?.dismiss(animated: true, completion: nil)
                 }))
+                alert.view.tintColor = UIColor(named: "AccentColor")
+                present(alert, animated: true)
             }
             
         } else {
@@ -146,6 +156,7 @@ extension CameraDetailViewController { //MARK: TableView Data source and delegat
         
         return "Description"
     }
+
     
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
@@ -201,7 +212,8 @@ extension CameraDetailViewController { //MARK: TableView Data source and delegat
                 let imageScale = tableView.traitCollection.displayScale
                 let imageSize = cameraCell.cameraPicture.bounds.size
                 
-                if  let imageUrl = camera?.photo {
+                if  let imageName = camera?.photo,
+                    let imageUrl = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName) {
                     
                     let provider = LocalFileImageDataProvider(fileURL: imageUrl)
                     let processor = DownsamplingImageProcessor(size: imageSize)
@@ -307,6 +319,7 @@ extension CameraDetailViewController: PhotoPickerDelegate {
                         let alert = UIAlertController(title: "Oops", message: "An error occured saving your camera's picture: \(String(describing: error!))", preferredStyle: .alert)
                         
                         alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                        alert.view.tintColor = UIColor(named: "AccentColor")
                         self.present(alert, animated: true, completion: nil)
                     }
                 }
@@ -320,6 +333,7 @@ extension CameraDetailViewController: PhotoPickerDelegate {
                     let alert = UIAlertController(title: "Oops", message: "An error occured saving your camera's picture: \(String(describing: error!))", preferredStyle: .alert)
                     
                     alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    alert.view.tintColor = UIColor(named: "AccentColor")
                     self.present(alert, animated: true, completion: nil)
                 } else if let url = url {
                     self.camera?.photo = url

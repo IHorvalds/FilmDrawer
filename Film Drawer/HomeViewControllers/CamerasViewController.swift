@@ -95,8 +95,8 @@ extension CamerasViewController { //MARK: Helper functions
         doneDeletingButton = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(stopEditing(_:)))
         addCameraButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddCameraVC(_:)))
         
-        doneDeletingButton.tintColor = .systemYellow
-        addCameraButton.tintColor = .systemYellow
+        doneDeletingButton.tintColor = UIColor(named: "AccentColor")
+        addCameraButton.tintColor = UIColor(named: "AccentColor")
     }
     
     fileprivate func setupCollectionViewPersona() {
@@ -106,8 +106,8 @@ extension CamerasViewController { //MARK: Helper functions
         collectionView.backgroundView = backgroundView
         backgroundView.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
-        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
         image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }
@@ -218,7 +218,9 @@ extension CamerasViewController: CameraCellDelegate {
         let imageSize = cell.cameraPhoto.bounds.size
         let imageScale = collectionView.traitCollection.displayScale
         
-        if let imageUrl = camera.photo {
+        if  let imageName = camera.photo,
+            let imageUrl = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName) {
+            
             let provider = LocalFileImageDataProvider(fileURL: imageUrl)
             let processor = DownsamplingImageProcessor(size: imageSize) |> RoundCornerImageProcessor(cornerRadius: 5.0)
             let placeholder = #imageLiteral(resourceName: "CameraDefaultPictureLarge")

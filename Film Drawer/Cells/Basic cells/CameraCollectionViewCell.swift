@@ -49,7 +49,7 @@ class CameraCollectionViewCell: UICollectionViewCell {
         favouriteButtonHeight.constant = 0.17 * cameraPhoto.frame.height
         setupButtonBackground(favouriteButton)
         setupButtonBackground(deleteButton)
-        setupShadow()
+//        setupShadow()
     }
     
     fileprivate func setupButtonBackground(_ button: UIButton) {

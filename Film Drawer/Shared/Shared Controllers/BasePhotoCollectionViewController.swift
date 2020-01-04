@@ -112,9 +112,9 @@ extension BasePhotosCollectionViewController: PhotoCellDelegate {
         addPhotoButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddPhotoVC(_:)))
         moreButton = UIBarButtonItem(image: #imageLiteral(resourceName: "􀍠MoreIcon"), style: .plain, target: self, action: #selector(displayMoreMenu))
         
-        doneDeletingButton.tintColor = .systemYellow
-        addPhotoButton.tintColor = .systemYellow
-        moreButton.tintColor = .systemYellow
+        doneDeletingButton.tintColor = UIColor(named: "AccentColor")
+        addPhotoButton.tintColor = UIColor(named: "AccentColor")
+        moreButton.tintColor = UIColor(named: "AccentColor")
     }
     
     fileprivate func setupCollectionViewPersona() {
@@ -124,8 +124,8 @@ extension BasePhotosCollectionViewController: PhotoCellDelegate {
         collectionView.backgroundView = backgroundView
         backgroundView.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
-        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
         image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }
@@ -165,6 +165,8 @@ extension BasePhotosCollectionViewController: PhotoCellDelegate {
         }))
         
         actionSheet.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        actionSheet.view.tintColor = UIColor(named: "AccentColor")
         
         present(actionSheet, animated: true, completion: nil)
         
@@ -244,7 +246,9 @@ extension BasePhotosCollectionViewController { //MARK: Collection View Data sour
         let imageSize = cell.bounds.size
         let imageScale = collectionView.traitCollection.displayScale
 
-        if let url = photo.file {
+        if  let imageName = photo.file,
+            let url = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName) {
+            
             let provider = LocalFileImageDataProvider(fileURL: url)
             let processor = DownsamplingImageProcessor(size: imageSize) |> RoundCornerImageProcessor(cornerRadius: 5.0)
             cell.image.kf.setImage(with: provider, options: [

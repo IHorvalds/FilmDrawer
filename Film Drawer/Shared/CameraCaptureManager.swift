@@ -195,7 +195,7 @@ class CameraCaptureManager: NSObject, AVCaptureVideoDataOutputSampleBufferDelega
             self.delegate?.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
             
         }))
-        
+        alert.view.tintColor = UIColor(named: "AccentColor")
         delegate?.present(alert, animated: true, completion: nil)
     }
     

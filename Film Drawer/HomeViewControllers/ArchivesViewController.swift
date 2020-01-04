@@ -23,8 +23,8 @@ class ArchivesViewController: UICollectionViewController {
         collectionView.backgroundView = backgroundView
         backgroundView.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
-        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
         image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }

@@ -34,7 +34,7 @@ class FilmCollectionViewCell2: UICollectionViewCell {
     @IBOutlet private weak var filmName: UILabel!
     @IBOutlet private weak var lastShotLabel: UILabel!
     @IBOutlet private weak var frameCountLabel: UILabel!
-    @IBOutlet private weak var backgroundBlurView: UIVisualEffectView!
+//    @IBOutlet private weak var backgroundBlurView: UIVisualEffectView!
     @IBOutlet private weak var containerView: UIView!
     
     override func awakeFromNib() {
@@ -71,8 +71,8 @@ class FilmCollectionViewCell2: UICollectionViewCell {
         self.layer.masksToBounds = false
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: 3.0)
-        self.layer.shadowOpacity = 0.4
-        self.layer.shadowRadius = 2
+        self.layer.shadowOpacity = 0.6
+        self.layer.shadowRadius = 4
         
         topImg.clipsToBounds = false
         topImg.layer.shadowColor = UIColor.black.cgColor
@@ -86,8 +86,9 @@ class FilmCollectionViewCell2: UICollectionViewCell {
         backImg.layer.shadowOpacity = 1
         backImg.layer.shadowRadius = 2
         
-        backgroundBlurView.layer.masksToBounds = true
-        backgroundBlurView.layer.cornerRadius = 10.0
+        containerView.layer.masksToBounds = true
+        containerView.layer.cornerRadius = 10.0
+        
     }
     
     public func startAnimating() {

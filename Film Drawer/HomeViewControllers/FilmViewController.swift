@@ -121,8 +121,8 @@ extension FilmViewController {
         doneDeletingButton = UIBarButtonItem(title: "OK", style: .plain, target: self, action: #selector(stopEditing(_:)))
         addFilmButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToAddFilmVC(_:)))
         
-        doneDeletingButton.tintColor = .systemYellow
-        addFilmButton.tintColor = .systemYellow
+        doneDeletingButton.tintColor = UIColor(named: "AccentColor")
+        addFilmButton.tintColor = UIColor(named: "AccentColor")
     }
     
     fileprivate func setupCollectionViewPersona() {
@@ -132,8 +132,8 @@ extension FilmViewController {
         collectionView.backgroundView = backgroundView
         backgroundView.addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
-        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
+        image.widthAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
+        image.heightAnchor.constraint(equalTo: backgroundView.widthAnchor, multiplier: 0.5).isActive = true
         image.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         image.centerYAnchor.constraint(equalTo: backgroundView.centerYAnchor).isActive = true
     }
@@ -218,7 +218,8 @@ extension FilmViewController: FilmCellDelegate2 {
         
         for (index, imageView) in [cell.topImg, cell.backImg].enumerated() {
             if  let photo = film.getPhoto(number: Int16(index)),
-                let url = photo.file {
+                let imageName = photo.file,
+                let url = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName) {
                 
                 let provider = LocalFileImageDataProvider(fileURL: url)
                 let processor = DownsamplingImageProcessor(size: topImageSize) |> RoundCornerImageProcessor(cornerRadius: 5.0)

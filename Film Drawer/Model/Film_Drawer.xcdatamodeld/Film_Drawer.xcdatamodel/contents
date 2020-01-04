@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B86a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C46a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Camera" representedClassName=".Camera" syncable="YES" codeGenerationType="category">
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
@@ -8,7 +8,7 @@
         <attribute name="lensMount" optional="YES" attributeType="String"/>
         <attribute name="maximumWidth" optional="YES" attributeType="Integer 16" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="photo" optional="YES" attributeType="URI"/>
+        <attribute name="photo" optional="YES" attributeType="String"/>
         <relationship name="filmsShot" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Film" inverseName="shotOn" inverseEntity="Film"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -38,7 +38,7 @@
         <attribute name="dateTaken" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="desc" optional="YES" attributeType="String"/>
         <attribute name="exposure" optional="YES" attributeType="String"/>
-        <attribute name="file" optional="YES" attributeType="URI" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="file" optional="YES" attributeType="String" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="focalLength" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="isFinalPicture" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

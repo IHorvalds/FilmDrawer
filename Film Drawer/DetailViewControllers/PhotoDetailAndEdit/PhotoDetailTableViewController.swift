@@ -20,6 +20,10 @@ class PhotoDetailTableViewController: UITableViewController, UIImagePickerContro
     var isAddingNewPicture: Bool = true
     var shouldTakeNewPicture: Bool = true
     
+    var captureManager = CameraCaptureManager.shared
+    
+    var shouldSave: Bool = false
+    
     
     // Cells and text fields
     @IBOutlet private weak var pictureCell: PictureTableViewCell!
@@ -28,13 +32,17 @@ class PhotoDetailTableViewController: UITableViewController, UIImagePickerContro
     @IBOutlet private weak var apertureMenu: DropDown!
     @IBOutlet private weak var focalLengthMenu: DropDown!
     @IBOutlet private weak var positionInFilmMenu: DropDown!
+    @IBOutlet weak var dateTaken: UITextField!
     
-    
+    let datePicker = UIDatePicker()
+    let toolBar = UIToolbar(frame: CGRect(x: 0.0, y: 0.0, width: UIScreen.main.bounds.width, height: 44.0))
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-         imagePicker.delegate = self
+        imagePicker.delegate = self
+        captureManager.delegate = self
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButton))
         
@@ -43,24 +51,49 @@ class PhotoDetailTableViewController: UITableViewController, UIImagePickerContro
             photo = Photo(context: context)
         }
         
-        
-//        setupPictureCell()
+        setupDatePicker()
+        setupPictureCell()
         setupDropDown()
     }
-
-}
-
-extension PhotoDetailTableViewController: PhotoDetailControllerDelegate {
-    func savePicture(cell: PictureTableViewCell, picture: CGImage) {
-        print(picture)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // save logic.
+        //TODO: - Regular expression this. ASAP
+        if shouldSave {
+            photo?.belongsTo = film
+            photo?.dateTaken = dateFormatter.date(from: dateTaken.text!)
+            //photo?.aperture = apertureMenu.text // regular expression to fix this?
+            photo?.exposure = exposureMenu.text
+            //photo?.focalLength = focalLengthMenu.text // regular expression to fix this too?
+            photo?.positionInFilm = Int16(positionInFilmMenu.text!)!
+        }
     }
     
-    func generateTags(cell: PictureTableViewCell, for image: CGImage) {
-        print(image)
-        print("hello")
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return CGFloat.leastNonzeroMagnitude
+        } else {
+            return 0
+        }
     }
     
-    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            
+            if indexPath.section == 0 {
+                return UIScreen.main.bounds.width
+            }
+            
+            if indexPath.section == 2 {
+                return 420
+            }
+        }
+        
+        return 55
+    }
+
 }
 
 extension PhotoDetailTableViewController { // Helper functions
@@ -83,14 +116,21 @@ extension PhotoDetailTableViewController { // Helper functions
     }
     
     fileprivate func setupPictureCell() {
-        pictureCell.delegate = self
+        pictureCell.imagePicker.delegate = self
         pictureCell.shouldCaptureNewImage = (photo?.file == nil)
+        
+        pictureCell.choosePhotoButton.addTarget(self, action: #selector(chooseFromGallery), for: .touchUpInside)
+        pictureCell.takePhotoButton.addTarget(self, action: #selector(capturePicture), for: .touchUpInside)
+        pictureCell.previewButton.addTarget(self, action: #selector(previewButtonTapped), for: .touchUpInside)
+        pictureCell.newImageButton.addTarget(self, action: #selector(newImageTapped), for: .touchUpInside)
         
         if !pictureCell.shouldCaptureNewImage {
             let size = pictureCell.pictureView.bounds.size
             let scale = tableView.traitCollection.displayScale
             
-            if let url = photo?.file {
+            if  let imageName = photo?.file,
+                let url = ImageFileManager.shared.getBaseURL()?.appendingPathComponent(imageName) {
+                
                 let provider = LocalFileImageDataProvider(fileURL: url)
                 let processor = DownsamplingImageProcessor(size: size)
                 pictureCell.pictureView.kf.indicatorType = .activity
@@ -101,22 +141,70 @@ extension PhotoDetailTableViewController { // Helper functions
                     .scaleFactor(scale),
                     .cacheOriginalImage], completionHandler: nil)
             }
-            
-//            DispatchQueue.global(qos: .userInitiated).async {
-//                //downsample on a background queue
-//                if  let data = self.photo?.file,
-//                    let image = UIImage.downsample(imageWithData: data, to: size, scale: scale) {
-//                    DispatchQueue.main.async { [weak self] in
-//                        guard let self = self else { return }
-//                        //and display on the main queue
-//                        self.pictureCell.pictureView.image = image
-//                    }
-//                }
-//            }
+        } else {
+            captureManager.setupCameraOutput(previewView: pictureCell.previewView)
         }
     }
     
+    fileprivate func setupDatePicker() {
+        dateTaken.placeholder = dateFormatter.string(from: Date())
+        dateTaken.tintColor = .clear
+        dateFormatter.dateStyle = .medium
+        datePicker.datePickerMode = .date
+        datePicker.date = Date()
+        datePicker.addTarget(self, action: #selector(changePhotoDateTaken(sender:)), for: .valueChanged)
+        setupToolbar()
+        dateTaken.inputAccessoryView = toolBar
+        dateTaken.inputView = datePicker
+    }
+    
+    fileprivate func setupToolbar() {
+        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelDatePicker))
+        let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(changePhotoDateTaken(sender:)))
+        toolBar.setItems([cancelBarButton, spacer, doneBarButton], animated: false)
+    }
+    
+    @objc func cancelDatePicker() {
+        dateTaken.text = dateFormatter.string(from: Date())
+    }
+    
+    @objc func changePhotoDateTaken(sender: Any) {
+        dateTaken.text = dateFormatter.string(from: datePicker.date)
+        photo?.dateTaken = datePicker.date
+        if sender is UIBarButtonItem {
+            dateTaken.resignFirstResponder()
+        }
+    }
+    
+    @objc func previewButtonTapped() {
+        pictureCell.choosePhotoButton.backCol = .darkGray
+        pictureCell.previewButton.backCol = UIColor(named: "AccentColor")!
+        
+        if !shouldTakeNewPicture {
+            captureManager.setupCameraOutput(previewView: pictureCell.previewView)
+        }
+    }
+    
+    @objc func chooseFromGallery() {
+        pictureCell.choosePhotoButton.backCol = UIColor(named: "AccentColor")!
+        pictureCell.previewButton.backCol = .darkGray
+        
+        present(imagePicker, animated: true)
+    }
+    
+    @objc func capturePicture() {
+        captureManager.capturePicture()
+        
+        shouldTakeNewPicture = false
+    }
+    
+    @objc func newImageTapped() {
+        captureManager.setupCameraOutput(previewView: pictureCell.previewView)
+    }
+    
     @objc func doneButton() {
+        
         if  photo?.addIDIfcompleteEnough() ?? false,
             let context = container?.viewContext {
             
@@ -125,9 +213,18 @@ extension PhotoDetailTableViewController { // Helper functions
         } else if let photo = photo {
             container?.viewContext.delete(photo)
         }
+        
+        if self.isModal() {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     
     @objc func cancelButton() {
+        
+        shouldSave = false
+        
         if let photo = photo {
             container?.viewContext.delete(photo)
         }
@@ -138,4 +235,83 @@ extension PhotoDetailTableViewController { // Helper functions
         }
     }
     
+    fileprivate func cropImageToSquare(image: CGImage, orientation: UIImage.Orientation) -> UIImage {
+        //Trying to crop to a square
+        let scale = tableView.traitCollection.displayScale
+        let size = (image.width > image.height) ? image.height : image.width
+        let rectToCrop = CGRect(x: (image.width-size)/2, y: (image.height-size)/2, width: size, height: size)
+        
+        if let croppedImage = image.cropping(to: rectToCrop) {
+            let image = UIImage(cgImage: croppedImage, scale: scale, orientation: orientation)
+            
+            return image
+        } else {
+            return UIImage(cgImage: image, scale: scale, orientation: orientation)
+        }
+    }
+    
+    private func saveImage(_ image: UIImage) {
+        if  let rotatedImage = image.rotateImage(),
+            let imageData = rotatedImage.pngData() {
+            
+            if let url = photo?.file {
+                ImageFileManager.shared.delete(file: url) {[weak self] (success, error) in
+                    guard let self = self else { return }
+                    if error != nil {
+                        let alert = UIAlertController(title: "Oops", message: "An error occured saving your picture: \(String(describing: error!))", preferredStyle: .alert)
+                        
+                        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                        alert.view.tintColor = UIColor(named: "AccentColor")
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+            
+            
+            let filename = "Picture-\(UUID()).PNG"
+            ImageFileManager.shared.saveFile(with: imageData, filename: filename) {[weak self] (success, url, error) in
+                guard let self = self else { return }
+                if error != nil {
+                    let alert = UIAlertController(title: "Oops", message: "An error occured saving your camera's picture: \(String(describing: error!))", preferredStyle: .alert)
+                    
+                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    alert.view.tintColor = UIColor(named: "AccentColor")
+                    self.present(alert, animated: true, completion: nil)
+                } else if let url = url {
+                    self.photo?.file = url
+                    self.setupPictureCell()
+                }
+            }
+        }
+    }
+    
+}
+
+extension PhotoDetailTableViewController: PhotoPickerDelegate {
+    
+    func shouldStopCameraRecording() {
+        shouldTakeNewPicture = false
+    }
+    
+    func processImage(image: CGImage) {
+        if  let rotatedImage = UIImage(cgImage: image).rotateImage(),
+            self.captureManager.checkForPhotosPermission() {
+            UIImageWriteToSavedPhotosAlbum(rotatedImage, self, nil, nil)
+        }
+        saveImage(cropImageToSquare(image: image, orientation: .right))
+    }
+    
+}
+extension PhotoDetailTableViewController {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if  let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            saveImage(cropImageToSquare(image: editedImage.cgImage!, orientation: .up))
+            shouldStopCameraRecording()
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            saveImage(cropImageToSquare(image: originalImage.cgImage!, orientation: .up))
+            shouldStopCameraRecording()
+        }
+        print("nothing")
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
